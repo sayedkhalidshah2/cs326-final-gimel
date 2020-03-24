@@ -12,4 +12,4 @@ Our idea is to create a centralized site such that both the students and staff w
 
 ## Important Components:
 ---
-Functions provided by the application will be as follows: User authentification in order to distinguish between staff and customers. The ability for staff to alter menu components (items, descriptions, prices and contact information), hours of operation and important notices or messages for customers. These will be easily accesible for the staff in order for them to efficiently alter the site without any kind of web development experience. 
+Functions provided by the application will be as follows: User authentification in order to distinguish between staff and customers. The ability for staff to alter menu components (items, descriptions, prices and contact information), hours of operation and important notices or messages for customers. These will be easily accesible for the staff in order for them to efficiently alter the site without any kind of web development experience. This also means that ther will exist a "log in/log out" functionality for the staff to use, only staff will have the credentials needed for this function.
