@@ -25,7 +25,29 @@ ul {
     background-color: #555;
     color: white;
   }
-  div {margin-left:23.5%;
-    padding:1px 16px;
 
-  }
+#first {
+    margin-left: 25%;
+  
+    float: left;
+    height: 350px;
+    
+}
+#second {
+  
+    float: left;
+    height: 350px;
+}
+#third{
+  
+  height: 350px;
+  float: left;
+}
+#about{
+  margin-left:23.5%;
+  
+}
+#aboutus{
+  margin-left:23.5%;
+  padding-top: 4in;
+}
