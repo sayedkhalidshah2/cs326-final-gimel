@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/sayedkhalidshah2/cs326-final-gimel#readme",
   "dependencies": {
-    "@types/jquery": "^3.3.34"
+    "@types/jquery": "^3.3.34",
+    "level": "^6.0.1"
   }
 }
