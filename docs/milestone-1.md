@@ -13,15 +13,31 @@ Mockup Page:
 ![Home Page](Mockups/home_page.PNG)
 
 HTML Page:
+![Home Page](Mockups/home_html.PNG)
 
 Buisness Customer Page:
 ---
-![Buisness Page](Mockups/sylvan_page.PNG)
+The Buisness Customer page is where users can see the available information about the buisness such as its standard buisness information such as hours of operation and numbers. They can also see the buisnesses menu for items,descriptions and prices. From this page they can also navigate to the home page or any other restuarants page or if they are staff members of that buisness can use the "sign in" link to get to that buisnesses Sign In page.
+
+Mockup Page:
+![Buisness Page](Mockups/sylvan_html.PNG)
+
+HTML Page:
+
+Sign In Page:
+---
+The Sign In page allows the staff of the given restuarant to use their issued key code in orer to get to the Buisness Staff Page for their given buisness. All the staff will get their own individuals code that only allows them to alter their own buinsesse's page and no others
+
+Mockup Page:
+![Buisness Page](Mockups/sign_in_page.PNG)
 
 HTML Page:
 
 Buisness Staff Page:
 ---
-![Buisness Page](Mockups/sylvan_staff_page.PNG)
+The Buisness Staff page is where users who are staff of a given buisness can edit their buisness information by removing and adding items to the menu's with the appropriate information and changing the buisnesses general information. When they go back to the regular site the information there will be updated according to the changes made by the staff.
+
+Mockup Page:
+![Buisness Page](Mockups/sylvan_staff_html.PNG)
 
 HTML Page:
