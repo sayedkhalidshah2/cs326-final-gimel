@@ -34,10 +34,23 @@ Mockup Page:
 HTML Page:
 
 Buisness Staff Page:
+![Buisness Page](Mockups/sign_in_html.PNG)
 ---
 The Buisness Staff page is where users who are staff of a given buisness can edit their buisness information by removing and adding items to the menu's with the appropriate information and changing the buisnesses general information. When they go back to the regular site the information there will be updated according to the changes made by the staff.
 
 Mockup Page:
-![Buisness Page](Mockups/sylvan_staff_html.PNG)
+![Buisness Page](Mockups/sylvan_staff_page.PNG)
 
 HTML Page:
+![Buisness Page](Mockups/sylvan_staff_html.PNG)
+
+Breakdown:
+
+Joshua Read:
+Helped to design the mockups and helped create and link rough drafts of html for pages
+
+Sayed Shah:
+Created most of the code for the pages and helped refine page design with css
+
+Veronica Gusev:
+Helped design pages and made functioning side bar for easy navigation between pages.
