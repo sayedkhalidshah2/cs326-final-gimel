@@ -15,16 +15,17 @@
   },
   "author": "",
   "license": "ISC",
-  
   "bugs": {
     "url": "https://github.com/sayedkhalidshah2/cs326-final-gimel/issues"
   },
   "homepage": "https://github.com/sayedkhalidshah2/cs326-final-gimel#readme",
   "dependencies": {
-    "@types/node": "^13.11.1",
     "@types/jquery": "^3.3.34",
     "express": "^4.17.1",
     "mongodb": "^3.5.6",
     "typescript": "^3.8.3"
-    }
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.0"
+  }
 }
