@@ -22,6 +22,18 @@ export class MyServer {
 	});
 	// Serve static pages from a particular path.
 	this.server.use('/', express.static('./html'));
+
+	this.server.use(express.json());
+	this.server.use(express.urlencoded({ extended: false }));
+
+	this.server.use((req, res, next) => {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header(
+			"Access-Control-Allow-Headers",
+			"Origin, X-Requested-With, Content-Type, Accept"
+		);
+		next();
+	});
 	//// YOUR CODE GOES HERE
 	//// HANDLE CREATE, READ, UPDATE, AND DELETE OPERATIONS
 	this.router.get('/users/:userId/create', this.createHandler.bind(this));
@@ -48,8 +60,7 @@ export class MyServer {
     
     private async createHandler(request, response) : Promise<void> {
 		console.log('create')
-
-	await this.createCounter(request.params['userId']+"-"+request.query.name, response);
+		await this.createCounter(request, response); //C
     }
 
     private async readHandler(request, response): Promise<void> {
@@ -73,13 +84,30 @@ export class MyServer {
 	this.server.listen(port);
     }
 
-    public async createCounter(name: string, response) : Promise<void> {
-	console.log("creating counter named '" + name + "'");
-	await this.theDatabase.put(name, 0);
-	response.write(JSON.stringify({'result' : 'created',
-				       'name' : name,
-				       'value' : 0 }));
-	response.end();
+    public async createCounter(request, response) : Promise<void> {
+		const name = request.body['name'];
+		const cost = request.body['cost'];
+		const dscr = request.body['dscr'];
+		const grup = request.body['grup'];
+		const rstr = request.body['rstr'];
+
+		console.log("Creating Menu Item With the Following Values:");
+		console.log("Item Name: "+request.body['name']);
+		console.log("Item Cost: "+request.body['cost']);
+		console.log("Item Description: "+request.body['dscr']);
+		console.log("Menu Group: "+request.body['grop']);
+		console.log("Restaurant: "+request.body['rstr']);
+
+		await this.theDatabase.put(name,cost,dscr,grup,rstr);
+		response.write(JSON.stringify({
+			'result' : 'created',
+			'name' : name,
+			'cost' : cost,
+			'dscr' : dscr,
+			'grup' : grup,
+			'rstr' : rstr 
+		}));
+		response.end();
     }
 
     public async errorCounter(name: string, response) : Promise<void> {
@@ -95,13 +123,14 @@ export class MyServer {
 	response.end();
     }
 
-    public async updateCounter(name: string, value: number, response) : Promise<void> {
-	await this.theDatabase.put(name, value);
-	response.write(JSON.stringify({'result' : 'updated',
-				       'name' : name,
-				       'value' : value }));
-	response.end();
-    }
+	//Not Needed Because of Checking function in DB
+    // public async updateCounter(name: string, value: number, response) : Promise<void> {
+	// await this.theDatabase.put(name, value);
+	// response.write(JSON.stringify({'result' : 'updated',
+	// 			       'name' : name,
+	// 			       'value' : value }));
+	// response.end();
+    // }
     
     public async deleteCounter(name : string, response) : Promise<void> {
 	await this.theDatabase.del(name);
@@ -109,6 +138,42 @@ export class MyServer {
 				       'value'  : name }));
 	response.end();
 	}
+
+
+// 	//Sample:
+// 	var express = require("express");
+// var app = express();
+
+// // use `express.json()` and `express.urlencoded` to
+// // parse incoming requests with JSON payloads
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+// app.post("/hello", (req, res, next) => {
+//   // `req.body` is a native object since `express.json()`
+//   // and `express.urlencoded()` are taking care of the payload,
+//   // no need for `JSON.parse()` here
+
+//   //If the entire object is wanted back
+//   const payload = {
+//     ...req.body,
+//   };
+
+//   //If a singular part is wanted back
+//   //const payload = req.body["<attribute>"]
+
+//   res.status(200).json(payload);
+// });
+
+// app.listen(3000)
 	
 }
 
