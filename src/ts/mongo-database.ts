@@ -61,9 +61,9 @@ export class Database {
     	let result = await collection.findOne({"name" : key })
     	console.log("get: returned " + JSON.stringify(result))
     	if (result) {
-	    return result.value
+	    	return result.value
     	} else {
-	    return null
+	    	return null
     	}
     }
     
@@ -81,9 +81,9 @@ export class Database {
     	let v = await this.get(key)
     	console.log("is found result = " + v)
     	if (v === null) {
-	    return false
+	    	return false
     	} else {
-	    return true
+	    	return true
     	}
     }
 }
