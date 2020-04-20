@@ -1,20 +1,23 @@
-export class Database {
+/* eslint-disable no-mixed-spaces-and-tabs */
 
-    private MongoClient = require('mongodb').MongoClient;
-    private uri = "mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority";
+import { URI } from "./secure"
+export class Database {
+		
+
+    private MongoClient = require("mongodb").MongoClient;
+    private uri = URI;
     private client;
     private collectionName : string;
-    private dbName : string = "emery";
+    private dbName : string = "BergerCluster";
 
-    constructor(collectionName) {
-	this.collectionName = collectionName;
-	this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
-	// Open up a connection to the client.
-	// Open up a connection to the client.
-	// The connection is asynchronous, but we can't call await directly
-	// in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
+    constructor() {
+    	this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
+    	// Open up a connection to the client.
+    	// Open up a connection to the client.
+    	// The connection is asynchronous, but we can't call await directly
+    	// in the constructor, which cannot be async. So, we use "IIFE". Explanation below.
 	
-	/* from https://anthonychu.ca/post/async-await-typescript-nodejs/
+    	/* from https://anthonychu.ca/post/async-await-typescript-nodejs/
 
 	  Async/Await and the Async IIFE
 
@@ -28,49 +31,59 @@ export class Database {
 	   })();
 
 	*/
-	(async () => {
-	    await this.client.connect().catch(err => { console.log(err); });
-	})();
+    	(async () => {
+	    await this.client.connect().catch(err => { console.log(err) })
+    	})()
+    }
+	
+    public async create(object: any) : Promise<void> {
+    	console.log(object)
+		
+    	let db = this.client.db(this.dbName)
+    	let collection = db.collection("Resturaunts")
+    	console.log("putting " + JSON.stringify(object))
+    	let result = await collection.updateOne( {"name": object.name}, {$set: {"dscr": object.dscr}}, { "upsert" : true } )
+    	console.log("result = " + result)
     }
 
-    public async put(key: string, value: string) : Promise<void> {
-	let db = this.client.db(this.dbName);
-	let collection = db.collection(this.collectionName);
-	console.log("put: key = " + key + ", value = " + value);
-	let result = await collection.updateOne({'name' : key}, { $set : { 'value' : value} }, { 'upsert' : true } );
-	console.log("result = " + result);
+    public async put(object: any) : Promise<void> {
+    	let db = this.client.db(this.dbName)
+    	let collection = db.collection(object.rest)
+    	console.log("putting " + JSON.stringify(object))
+    	let result = await collection.updateOne(object, { "upsert" : true } )
+    	console.log("result = " + result)
     }
 
     public async get(key: string) : Promise<string> {
-	let db = this.client.db(this.dbName); // this.level(this.dbFile);
-	let collection = db.collection(this.collectionName);
-	console.log("get: key = " + key);
-	let result = await collection.findOne({'name' : key });
-	console.log("get: returned " + JSON.stringify(result));
-	if (result) {
-	    return result.value;
-	} else {
-	    return null;
-	}
+    	let db = this.client.db(this.dbName) // this.level(this.dbFile);
+    	let collection = db.collection(this.collectionName)
+    	console.log("get: key = " + key)
+    	let result = await collection.findOne({"name" : key })
+    	console.log("get: returned " + JSON.stringify(result))
+    	if (result) {
+	    return result.value
+    	} else {
+	    return null
+    	}
     }
     
     public async del(key: string) : Promise<void> {
-	let db = this.client.db(this.dbName);
-	let collection = db.collection(this.collectionName);
-	console.log("delete: key = " + key);
-	let result = await collection.deleteOne({'name' : key });
-	console.log("result = " + result);
-	// await this.db.del(key);
+    	let db = this.client.db(this.dbName)
+    	let collection = db.collection(this.collectionName)
+    	console.log("delete: key = " + key)
+    	let result = await collection.deleteOne({"name" : key })
+    	console.log("result = " + result)
+    	// await this.db.del(key);
     }
     
     public async isFound(key: string) : Promise<boolean>  {
-	console.log("isFound: key = " + key);
-	let v = await this.get(key);
-	console.log("is found result = " + v);
-	if (v === null) {
-	    return false;
-	} else {
-	    return true;
-	}
+    	console.log("isFound: key = " + key)
+    	let v = await this.get(key)
+    	console.log("is found result = " + v)
+    	if (v === null) {
+	    return false
+    	} else {
+	    return true
+    	}
     }
 }
