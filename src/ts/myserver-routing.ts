@@ -34,22 +34,25 @@ export class MyServer {
     			"Origin, X-Requested-With, Content-Type, Accept"
     		)
     		next()
-    	})
-    	//// YOUR CODE GOES HERE
+		})
+		
     	//// HANDLE CREATE, READ, UPDATE, AND DELETE OPERATIONS
-    	// this.router.post("/menu", this.updateHandler.bind(this))
-		this.router.get('/menu', this.restHandler.bind(this));
-		this.router.get('/menus/:rest', this.restMenuHandler.bind(this));
-		this.router.get('/menu/:rest/:item',this.restMenuItemHandler.bind(this));
+		this.router.post('/create', this.addRestHandler.bind(this));
 		this.router.post('/menu',this.addItemHandler.bind(this));
+
+		this.router.get('/menu', this.getRestHandler.bind(this));
+		this.router.get('/menus/:rest', this.getrestMenuHandler.bind(this));
+		this.router.get('/menu/:rest/:item',this.getrestMenuItemHandler.bind(this));
+		
 		this.router.delete('/menu',this.deleteRestItemHandler.bind(this));
+
     	// this.router.get("/users/:userId/update", [this.errorHandler.bind(this), this.updateHandler.bind(this) ])
     	// this.router.get("/users/:userId/delete", [this.errorHandler.bind(this), this.deleteHandler.bind(this) ])
 	
     	//// HANDLE ERRORS WITH A WILDCARD (*)
     	// this.router.get("/*", this.errorHandler.bind(this))
 
-    	// Start up the counter endpoint at '/counter'.
+    	// Start up the counter endpoint at '/'.
     	this.server.use("/", this.router)
     }
 
@@ -62,13 +65,21 @@ export class MyServer {
 	    	
     	}
     }
-    private async addItemHandler(request, response) : Promise<void> {
+    private async addRestHandler(request, response) : Promise<void> {
     	console.log("adding resturaunt")
-    	await this.theDatabase.create(request.body)
+		await this.theDatabase.create(request.body)
+		response.write(JSON.stringify(request.body))
     	response.end()
 	}
 	
-	private async restHandler(request,response):  Promise<void> {
+	private async addItemHandler(request, response) : Promise<void> {
+    	console.log("adding Item")
+		await this.theDatabase.put(request.body)
+		response.write(JSON.stringify(request.body))
+    	response.end()
+	}
+
+	private async getRestHandler(request,response):  Promise<void> {
 		let rest = await this.theDatabase.getCollectionNames();
 		let result = {
 			'menus': rest
@@ -77,9 +88,9 @@ export class MyServer {
 		response.end()
 	}
 
-	public async restMenuHandler(request, response) : Promise<void> {
+	public async getrestMenuHandler(request, response) : Promise<void> {
 		let coll = request.params.rest
-		let objs = await this.theDatabase.getCollection(coll).find()
+		let objs = await this.theDatabase.collection(coll).find()
 		let result = {
 			'items':objs
 		}
@@ -87,21 +98,21 @@ export class MyServer {
 		response.end()
 	}
 
-	public async restMenuItemHandler(request,response) : Promise<void> {
+	public async getrestMenuItemHandler(request,response) : Promise<void> {
 		let restaurant = request.params.rest;
 		let item = request.params.item;
-		let obj = await this.theDatabase.getCollection(restaurant).find(item)
+		let obj = await this.theDatabase.collection(restaurant).find(item)
 		//Break apart the object returned by the DB:
 	}
 
 	private async deleteRestItemHandler(request,response) : Promise<void> {
 		let rest = request.params.rest;
 		let name = request.params.name
-		let item = await this.theDatabase.getCollection(rest).find(name);
+		let item = await this.theDatabase.collection(rest).find(name);
 		//Break apart the object returned by the DB:
 
 
-		await this.theDatabase.getCollection(rest).del(name);
+		await this.theDatabase.collection(rest).del(name);
 
 	}
 
