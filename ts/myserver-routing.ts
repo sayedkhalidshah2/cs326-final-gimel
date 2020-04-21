@@ -39,11 +39,9 @@ export class MyServer {
     	//// HANDLE CREATE, READ, UPDATE, AND DELETE OPERATIONS
 		this.router.post('/create', this.addRestHandler.bind(this));
 		this.router.post('/menu',this.addItemHandler.bind(this));
-
 		this.router.get('/menu', this.getRestHandler.bind(this));
 		this.router.get('/menus/:rest', this.getrestMenuHandler.bind(this));
 		this.router.get('/menu/:rest/:item',this.getrestMenuItemHandler.bind(this));
-		
 		this.router.delete('/menu',this.deleteRestItemHandler.bind(this));
 
     	// this.router.get("/users/:userId/update", [this.errorHandler.bind(this), this.updateHandler.bind(this) ])
@@ -63,8 +61,12 @@ export class MyServer {
 			response.end()
     	} else {
 	    	
-    	}
-    }
+		}
+	}
+	
+	//Funciton to add a restaurant to the collection of restaurants in the DB
+	//Parameters: JSON object with attribute(s): {name,dscr}
+	//Returns: JSON object with attribute(s): {name,dscr}
     private async addRestHandler(request, response) : Promise<void> {
     	console.log("adding resturaunt")
 		await this.theDatabase.create(request.body)
@@ -72,6 +74,9 @@ export class MyServer {
     	response.end()
 	}
 	
+	//Adds an item to a restaurant in the DB 
+	//Parameters: JSON object with attribute(s): {name,cost,dscr,rest,type}
+	//Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
 	private async addItemHandler(request, response) : Promise<void> {
     	console.log("adding Item")
 		await this.theDatabase.put(request.body)
@@ -79,8 +84,11 @@ export class MyServer {
     	response.end()
 	}
 
+	//Gets the list of restaurants from the DB 
+	//Parameters: None
+	//Returns: JSON object with attribute(s): {menus: [List of restuaurants]}
 	private async getRestHandler(request,response):  Promise<void> {
-		let rest = await this.theDatabase.getCollectionNames();
+		let rest = await this.theDatabase.getRest();
 		let result = {
 			'menus': rest
 		}
@@ -88,9 +96,14 @@ export class MyServer {
 		response.end()
 	}
 
+	//Gets them menu of a restaurant in the DB 
+	//Parameters: 
+		//rest: the name of the restaurant
+	//Returns: JSON object with attribute(s): {items : [List of menu objects]}
+	//EX: 
 	public async getrestMenuHandler(request, response) : Promise<void> {
 		let coll = request.params.rest
-		let objs = await this.theDatabase.collection(coll).find()
+		let objs = this.theDatabase.getRestMenu(coll)
 		let result = {
 			'items':objs
 		}
@@ -98,21 +111,33 @@ export class MyServer {
 		response.end()
 	}
 
+	//Gets an item from a  menu of a restaurant in the DB 
+	//Parameters: 
+		//rest: the name of the restaurant 
+		//item: the name of the item
+	//Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
+	//EX: 
 	public async getrestMenuItemHandler(request,response) : Promise<void> {
 		let restaurant = request.params.rest;
 		let item = request.params.item;
-		let obj = await this.theDatabase.collection(restaurant).find(item)
+		let obj = await this.theDatabase.get(restaurant,item)
 		//Break apart the object returned by the DB:
 	}
 
+	//Deletes an item from a  menu of a restaurant in the DB 
+	//Parameters: 
+		//rest: the name of the restaurant, 
+		//item: the name of the item
+	//Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
+	//EX: 
 	private async deleteRestItemHandler(request,response) : Promise<void> {
 		let rest = request.params.rest;
 		let name = request.params.name
-		let item = await this.theDatabase.collection(rest).find(name);
+		let obj = await this.theDatabase.get(rest,name)
 		//Break apart the object returned by the DB:
 
 
-		await this.theDatabase.collection(rest).del(name);
+		await this.theDatabase.del(rest,name);
 
 	}
 

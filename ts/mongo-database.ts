@@ -34,7 +34,7 @@ export class Database {
     	(async () => {
 	    await this.client.connect().catch(err => { console.log(err) })
     	})()
-    }
+	}
 	
     public async create(object: any) : Promise<void> {
     	console.log(object)
@@ -54,31 +54,44 @@ export class Database {
     	console.log("result = " + result)
     }
 
-    public async get(key: string) : Promise<string> {
+    public async get(rest: string,item:string) : Promise<string> {
     	let db = this.client.db(this.dbName) // this.level(this.dbFile);
-    	let collection = db.collection(this.collectionName)
-    	console.log("get: key = " + key)
-    	let result = await collection.findOne({"name" : key })
+    	let collection = db.collection(rest)
+    	console.log("get: rest = " + rest)
+    	let result = await collection.findOne({"name" : item })
     	console.log("get: returned " + JSON.stringify(result))
     	if (result) {
 	    	return result.value
     	} else {
 	    	return null
     	}
-    }
+	}
+	
+	public async getRest() : Promise<string> {
+		let db = this.client.db(this.dbName)
+		let result = db.getCollectionNames()
+		return result;
+	}
+
+	public async getRestMenu(key :string) : Promise<string> {
+		let db = this.client.db(this.dbName) // this.level(this.dbFile);
+		let collection = db.collection(key)
+		let result = await collection.findOne({})
+		return result 
+	}
     
-    public async del(key: string) : Promise<void> {
+    public async del(rest: string,name:string) : Promise<void> {
     	let db = this.client.db(this.dbName)
-    	let collection = db.collection(this.collectionName)
-    	console.log("delete: key = " + key)
-    	let result = await collection.deleteOne({"name" : key })
+    	let collection = db.collection(rest)
+    	console.log("delete: rest = " + rest)
+    	let result = await collection.deleteOne({"name" : name })
     	console.log("result = " + result)
     	// await this.db.del(key);
     }
     
-    public async isFound(key: string) : Promise<boolean>  {
-    	console.log("isFound: key = " + key)
-    	let v = await this.get(key)
+    public async isFound(rest: string,name:string) : Promise<boolean>  {
+    	console.log("isFound: rest = " + rest)
+    	let v = await this.get(rest,name)
     	console.log("is found result = " + v)
     	if (v === null) {
 	    	return false
