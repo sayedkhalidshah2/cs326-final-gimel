@@ -5,10 +5,10 @@
          <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+      <script src="clientSsb.js"></script>
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel = "stylesheet" type = "text/css" href = "../../assets/css/ssb.css" />
+      <link rel = "stylesheet" type = "text/css" href = "assets/css/ssb.css" />
       <title>Sylvan Snack Bar</title>
     </head>
       
@@ -20,6 +20,7 @@
             <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target=".mobileNav"  >
               <span class="navbar-toggler-icon"></span>
             </button>
+            
             <!-- <div class="collapse navbar-collapse mobileNav">
               <div class="navbar-nav mr-auto">
                   <a class="navitem nav-link" href="#">Link</a>
@@ -35,7 +36,7 @@
               
           
           <div >
-            <img src="../../assets/images/Sylvan.jpg" class="card-img-top" alt="umass" width="100%" height="150px">
+            <img src="assets/images/Sylvan.jpg" class="card-img-top" alt="umass" width="100%" height="150px">
             <h1 class="display-5 text-white" style="background-color: #971B2F; text-align: center ;">Sylvan Snack Bar Staff Page</h1>
             <h4 class="display-6"style="text-align: center ;">Business Information</h4>
             <p class="p-3 mb-2 bg-secondary text-white" style="text-align: center ;">Business Information about the business, deliveries, etc</p>
@@ -43,25 +44,31 @@
             <section class="p-3 mb-2 bg-secondary text-white" >
               <p >Paninis</p>
               <p >Gluten Free..............$5</p>
-              <button type="button" class="btn btn-danger">Delete Item</button>
+              <button onclick="deleteItem()"  type="button" class="btn btn-danger">Delete Item</button>
               <p >Sandwitch</p>
               <p >Ham......................$5</p>
-              <button type="button" class="btn btn-danger">Delete Item</button>
+              <button onclick="deleteItem()" type="button" class="btn btn-danger">Delete Item</button>
             </section>
   
             
           </div>
           <section class="input-group mb-3 p-3 mb-2 bg-secondary text-white" id = "inpot">
-            <input type="text" class="form-control" placeholder="Item Name" >
-            <input type="text" class="form-control" placeholder="Item Group" >
+            <input type="text" class="form-control" placeholder="Item Name" id="itemname">
+            <input type="text" class="form-control" placeholder="Item Group"id="itemgroup" >
               <span class="input-group-text">$</span>
-              
+            <input type="text" class="form-control" placeholder="Item Cost"id="itemcost" >
+            <input type="text" class="form-control" placeholder="Item Description" id="itemdescription">
             
-            <input type="text" class="form-control" placeholder="Item Cost" >
-            <input type="text" class="form-control" placeholder="Item Description" >
-            <button type="button" class="btn btn-primary">Add</button>
+            <button onclick="addItem()" type="button"class="btn btn-primary">Add</button>
+            <button onclick="readItem()" type="button"class="btn btn-primary">Read</button>
+            <button onclick="updateItem()" type="button"class="btn btn-primary">Update</button>
           </section>
         </section>
+        <div class="col">
+          <p id="output" style="font-size: xx-large;">
+            <small style="font-size: small;"></small>
+          </p>
+        </div>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
