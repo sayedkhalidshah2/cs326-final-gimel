@@ -21,7 +21,6 @@ export class MyServer {
     	})
     	// Serve static pages from a particular path.
     	this.server.use("/", express.static("./html"))
-
     	this.server.use(express.json())
     	this.server.use(express.urlencoded({ extended: false }))
 
@@ -81,13 +80,10 @@ export class MyServer {
     //Gets the list of restaurants from the DB 
     //Parameters: None
     //Returns: JSON object with attribute(s): {menus: [List of restuaurants]}
-    private async getResturants(request,response):  Promise<void> {
+    private async getResturants(request, response):  Promise<void> {
     	let rest = await this.theDatabase.getResturaunts()
-    	let result = {
-    		"menus": rest
-    	}
-    	response.write(JSON.stringify(result))
-    	response.end()
+    	response.status(200).send(JSON.stringify(rest))
+
     }
 
     //Gets them menu of a restaurant in the DB 

@@ -11,7 +11,7 @@ export class Database {
     private dbName : string = "BergerCluster";
 
     constructor() {
-    	this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
+    	this.client = new this.MongoClient(this.uri, { useNewUrlParser: true, useUnifiedTopology: true,		}, );
     	// Open up a connection to the client.
     	// Open up a connection to the client.
     	// The connection is asynchronous, but we can't call await directly
@@ -79,8 +79,8 @@ export class Database {
     	let db = this.client.db(this.dbName)
     	let collection = db.collection("Resturaunts")
     	console.log("getting resturaunts")
-    	let result = await collection.find({})
-    	console.log("result = " + result)
+    	let result = await collection.find().toArray()
+    	console.log("result = " + JSON.stringify(result))
     	return result
     }
 	
