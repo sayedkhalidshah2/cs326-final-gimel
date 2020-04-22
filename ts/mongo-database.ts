@@ -49,7 +49,7 @@ export class Database {
     	let db = this.client.db(this.dbName)
     	let collection = db.collection(rest)
     	console.log("putting " + item)
-    	let result = await collection.updateOne( {"name": name}, 
+    	let result = await collection.updateOne( {"name": item}, 
     		{$set: {"descr": descr, "cost": cost, "type": type}}, 
     		{ "upsert" : true } )
     	console.log("result = " + result)
@@ -60,8 +60,8 @@ export class Database {
     	let db = this.client.db(this.dbName)
     	let collection = db.collection(rest)
     	console.log("getting " + item)
-    	let result = await collection.findOne( {"name": name})
-    	console.log("result = " + result)
+    	let result = await collection.findOne( {"name": item})
+    	console.log("result = " + JSON.stringify(result))
     	return result
     }
 	
@@ -70,7 +70,7 @@ export class Database {
     	let db = this.client.db(this.dbName)
     	let collection = db.collection(rest)
     	console.log("deleting " + item)
-    	let result = await collection.deleteOne( {"name": name})
+    	let result = await collection.deleteOne( {"name": item})
     	console.log("result = " + result)
     	return result
     }
@@ -87,67 +87,36 @@ export class Database {
     public async deleteResturaunt(rest: string) : Promise<string> {
     	let db = this.client.db(this.dbName)
     	let collection = db.collection(rest)
+    	let result
     	console.log("deleting "+ rest)
-    	let result = await collection.drop()
+    	try {result = await collection.drop()}
+    	catch(e) {   }
     	console.log("result = " + result)
 
     	let collection2 = db.collection("Resturaunts")
     	let result2 = await collection2.deleteOne( {"name": rest})
-		
-    	return result
+    	console.log("result2 = " + result2)
+
+    	return result2
     }
 	
     public async getResturauntItems(rest :string) : Promise<string> {
     	let db = this.client.db(this.dbName)
     	let collection = db.collection(rest)
     	console.log("getting "+ rest)
-    	let result = await collection.find({})
-    	console.log("result = " + result)
+    	let result = await collection.find().toArray()
+    	console.log("result = " + JSON.stringify(result))
     	return result 
     }
 
-	
-    public async put(object: any) : Promise<void> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection(object.rest)
-    	console.log("putting " + JSON.stringify(object))
-    	let result = await collection.updateOne(object, { "upsert" : true } )
-    	console.log("result = " + result)
-    }
-
-    public async get(rest: string,item:string) : Promise<string> {
-    	let db = this.client.db(this.dbName) // this.level(this.dbFile);
-    	let collection = db.collection(rest)
-    	console.log("getting = " + rest)
-    	let result = await collection.findOne({"name" : item })
-    	console.log("get: returned " + JSON.stringify(result))
-    	if (result) {
-	    	return result.value
-    	} else {
-	    	return null
-    	}
-    }
-	
-  
- 
-    
-    public async del(rest: string,name:string) : Promise<void> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection(rest)
-    	console.log("delete: rest = " + rest)
-    	let result = await collection.deleteOne({"name" : name })
-    	console.log("result = " + result)
-    	// await this.db.del(key);
-    }
-    
-    public async isFound(rest: string,name:string) : Promise<boolean>  {
-    	console.log("isFound: rest = " + rest)
-    	let v = await this.get(rest,name)
-    	console.log("is found result = " + v)
-    	if (v === null) {
-	    	return false
-    	} else {
-	    	return true
-    	}
-    }
+	// public async isFound(rest: string,name:string) : Promise<boolean>  {
+	// 	console.log("isFound: rest = " + rest)
+	// 	let v = await this.get(rest,name)
+	// 	console.log("is found result = " + v)
+	// 	if (v === null) {
+	//     	return false
+	// 	} else {
+	//     	return true
+	// 	}
+	// }
 }

@@ -1,5 +1,3 @@
-"use strict"
-
 import { Database } from "./ts/mongo-database"
 import { MyServer } from "./ts/myserver-routing"
 

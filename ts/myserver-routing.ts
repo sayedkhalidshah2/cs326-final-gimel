@@ -35,11 +35,11 @@ export class MyServer {
 		
     	//// HANDLE CREATE, READ, UPDATE, AND DELETE OPERATIONS
     	this.router.get("/menus", this.getResturants.bind(this))
-    	this.router.post("/menu/:rest", this.addResturaunt.bind(this))
+    	this.router.post("/menus/:rest", this.addResturaunt.bind(this))
     	this.router.get("/menus/:rest", this.getResturauntItems.bind(this))
     	this.router.delete("/menus/:rest",this.deleteResturaunt.bind(this))
-    	this.router.get("/menu/:rest/:item",this.getItem.bind(this))
-    	this.router.post("/menu/:rest/:item",this.addItem.bind(this))
+    	this.router.get("/menus/:rest/:item",this.getItem.bind(this))
+    	this.router.post("/menus/:rest/:item",this.addItem.bind(this))
     	this.router.delete("/menus/:rest/:item",this.deleteItem.bind(this))
 
 
@@ -59,9 +59,9 @@ export class MyServer {
     private async addResturaunt(request, response) : Promise<void> {
     	console.log("adding resturaunt")
     	let name = request.params.rest
-    	let obj = await this.theDatabase.create(name, request.body.dscr)
-    	response.write(JSON.stringify(obj))
-    	response.end()
+    	let obj = await this.theDatabase.addResturaunt(name, request.body.dscr)
+    	response.status(201).send(JSON.stringify(obj))
+
     }
 	
     //Adds an item to a restaurant in the DB 
@@ -72,9 +72,9 @@ export class MyServer {
     	let item = request.params.item
 
     	console.log("adding Item")
-    	let obj = await this.theDatabase.addItem(rest, item, request.body.dscr, request.body.cost, request.body.dscr )
-    	response.write(JSON.stringify(obj))
-    	response.end()
+    	let obj = await this.theDatabase.addItem(rest, item, request.body.cost, request.body.dscr, request.body.type )
+    	response.status(201).send(JSON.stringify(obj))
+
     }
 
     //Gets the list of restaurants from the DB 
@@ -92,9 +92,8 @@ export class MyServer {
     //EX: 
     public async getResturauntItems(request, response) : Promise<void> {
     	let rest = request.params.rest
-    	let objs = this.theDatabase.getResturauntItems(rest)
-    	response.write(JSON.stringify(objs))
-    	response.end()
+    	let obj = await this.theDatabase.getResturauntItems(rest)
+    	response.status(200).send(JSON.stringify(obj))
     }
 
     //Gets an item from a  menu of a restaurant in the DB 
@@ -106,10 +105,10 @@ export class MyServer {
     public async getItem(request,response) : Promise<void> {
     	let rest = request.params.rest
     	let item = request.params.item
-    	let obj = await this.theDatabase.get(rest, item)
+    	let obj = await this.theDatabase.getItem(rest, item)
     	//Break apart the object returned by the DB:
-    	response.write(JSON.stringify(obj))
-    	response.end()
+    	response.status(200).send(JSON.stringify(obj))
+
     }
 
     //Deletes an item from a  menu of a restaurant in the DB 
@@ -121,22 +120,22 @@ export class MyServer {
     private async deleteItem(request,response) : Promise<void> {
     	let rest = request.params.rest
     	let name = request.params.name
-    	let obj = await this.theDatabase.getItem(rest,name)
+    	// let obj = await this.theDatabase.getItem(rest,name)
     	//Break apart the object returned by the DB:
-    	await this.theDatabase.deleteItem(rest,name)
-    	response.write(JSON.stringify(obj))
-    	response.end()
+    	let obj = await this.theDatabase.deleteItem(rest,name)
+    	response.status(200).send(JSON.stringify(obj))
+
 
     }
 	
     private async deleteResturaunt(request,response) : Promise<void> {
     	let rest = request.params.rest
-    	 await this.theDatabase.get(rest)
+    	//  await this.theDatabase.get(rest)
     	//Break apart the object returned by the DB:
 
     	let obj = await this.theDatabase.deleteResturaunt(rest)
-    	response.write(JSON.stringify(obj))
-    	response.end()
+    	response.status(200).send(JSON.stringify(obj))
+
 
     }
 
