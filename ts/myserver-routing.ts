@@ -83,7 +83,6 @@ export class MyServer {
     private async getResturants(request, response):  Promise<void> {
     	let rest = await this.theDatabase.getResturaunts()
     	response.status(200).send(JSON.stringify(rest))
-
     }
 
     //Gets them menu of a restaurant in the DB 
