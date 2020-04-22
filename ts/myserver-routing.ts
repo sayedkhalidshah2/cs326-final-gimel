@@ -9,7 +9,7 @@ export class MyServer {
 
     // Server stuff: use express instead of http.createServer
     private server = express();
-    private port = 8081;
+    private port = 8080;
     private router = express.Router();
 
     constructor(db) {
