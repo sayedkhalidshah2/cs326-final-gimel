@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 const url = "http://localhost:8080/counter"
 
 async function postData(url, data) {
