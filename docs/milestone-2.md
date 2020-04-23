@@ -345,7 +345,7 @@ There are two required parameters and zero optional parameters for this endpoint
    </td>
    <td>(Required) The name of the restaurant
    </td>
-   <td>localhost:8080/menu/greenos/gustbuster
+   <td>localhost:8080/menu/greenos/
 <p>
 {“name” : “bagel” 
 <p>
@@ -508,3 +508,5 @@ All response data is returned as a JSON object
    </td>
   </tr>
 </table>
+
+
