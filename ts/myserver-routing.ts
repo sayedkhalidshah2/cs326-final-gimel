@@ -58,7 +58,7 @@ export class MyServer {
     //Returns: JSON object with attribute(s): {name,dscr}
     private async addResturaunt(request, response) : Promise<void> {
     	console.log("adding resturaunt")
-    	let name = request.params.rest
+    	let name = request.body.rest
     	let obj = await this.theDatabase.addResturaunt(name, request.body.dscr)
     	response.status(201).send(JSON.stringify(obj))
 
@@ -68,8 +68,8 @@ export class MyServer {
     //Parameters: JSON object with attribute(s): {name,cost,dscr,rest,type}
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
     private async addItem(request, response) : Promise<void> {
-    	let rest = request.params.rest
-    	let item = request.params.item
+    	let rest = request.body.rest
+    	let item = request.body.item
 
     	console.log("adding Item")
     	let obj = await this.theDatabase.addItem(rest, item, request.body.cost, request.body.dscr, request.body.type )
