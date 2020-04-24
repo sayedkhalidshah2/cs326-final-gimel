@@ -89,7 +89,6 @@ function deleteItem() {
 	(async () => {
 		let itemName = document.getElementById("itemname").value;
 		const newURL = url + "/menus/sylvan/"+itemName; 
-		alert(newURL)
 		const resp = await fetch(newURL, {
 			method:"DELETE"
 		});	    
