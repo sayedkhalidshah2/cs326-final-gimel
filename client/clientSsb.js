@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-const url = "http://localhost:8080"
+const url = " https://gimel-final.herokuapp.com/api"
 
 async function postData(url, data) {
 	const resp = await fetch(url,
@@ -27,9 +27,9 @@ function addItem() {
 		let itemGroup = document.getElementById("itemgroup").value;
 		const data = { "rest": "sylvan","name" : itemName,"cost": itemCost, 
 						"descr": itemDescription, 'type':itemGroup }; // -- (1)
-		const newURL = url + "/menus/" + data +"/create";; // used to be ?name=" + counterName; -- (2)
+		const newURL = url + "/menus/" + data +"/create"; // used to be ?name=" + counterName; -- (2)
 		console.log("AddingItemCreate: fetching " + newURL);
-		const resp = await postData("http://localhost:8080/menus/sylvan", data) ;// used to be fetch -- (3)
+		const resp = await postData(url+"menus/sylvan", data) ;// used to be fetch -- (3)
 		const j = await resp.json();
 
 		if (j["result"] !== "error") {
@@ -45,7 +45,6 @@ function addItem() {
 function readItem() {
 	(async () => {
 		let itemName = document.getElementById("itemname").value;
-		let itemRest = "sylvan";
 		const newURL = url + "/menus/sylvan/"+itemName; // used to be ?name=" + counterName; -- (2)
 		console.log("counterRead: fetching " + newURL);
 		const resp = await fetch(newURL,{
@@ -74,7 +73,7 @@ function updateItem() {
 						"descr": itemDescription, 'type':itemGroup }; // -- (1)
 		const newURL = url + "/menus/" + data +"/create";; // used to be ?name=" + counterName; -- (2)
 		console.log("AddingItemCreate: fetching " + newURL);
-		const resp = await postData("http://localhost:8080/menus/sylvan", data) ;// used to be fetch -- (3)
+		const resp = await postData(url+"menus/sylvan", data) ;// used to be fetch -- (3)
 		const j = await resp.json();
 
 		if (j["result"] !== "error") {
