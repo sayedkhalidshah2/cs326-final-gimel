@@ -21,7 +21,7 @@ export class MyServer {
 	    next()
     	})
     	// Serve static pages from a particular path.
-    	this.server.use("/", express.static("./html"))
+    	this.server.use("/", express.static("./client"))
     	this.server.use(express.json())
     	this.server.use(express.urlencoded({ extended: false }))
 
@@ -51,7 +51,7 @@ export class MyServer {
     	// this.router.get("/*", this.errorHandler.bind(this))
 
     	// Start up the counter endpoint at '/'.
-    	this.server.use("/", this.router)
+    	this.server.use("/api", this.router)
     }
 	private async errorHandler(request, response, next) : Promise<void> {
 		let value : boolean = await this.theDatabase.isFound(request.params['item']+"-"+request.body.name);
