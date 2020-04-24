@@ -124,4 +124,14 @@ export class Database {
 	//     	return true
 	// 	}
 	// }
+	public async isFound(rest: string) : Promise<boolean>  {
+		console.log("isFound: key = " + rest);
+		let v = await this.getResturauntItems(rest);
+		console.log("is found result = " + v);
+		if (v === null) {
+			return false;
+		} else {
+			return true;
+		}
+		}
 }

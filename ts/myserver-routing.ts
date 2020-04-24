@@ -39,7 +39,7 @@ export class MyServer {
     	this.router.post("/menus", this.addResturaunt.bind(this))
     	this.router.get("/menus/:rest", this.getResturauntItems.bind(this))
     	this.router.delete("/menus/:rest",this.deleteResturaunt.bind(this))
-    	this.router.get("/menus/:rest/:item",this.getItem.bind(this))
+    	this.router.get("/menus/:rest/:item",[this.errorHandler.bind(this),this.getItem.bind(this)])
     	this.router.post("/menus/:rest",this.addItem.bind(this))
     	this.router.delete("/menus/:rest/:item",this.deleteItem.bind(this))
 
@@ -53,7 +53,16 @@ export class MyServer {
     	// Start up the counter endpoint at '/'.
     	this.server.use("/", this.router)
     }
-	
+	private async errorHandler(request, response, next) : Promise<void> {
+		let value : boolean = await this.theDatabase.isFound(request.params['item']+"-"+request.body.name);
+	//	console.log("result from database.isFound: " + JSON.stringify(value));
+		if (!value) {
+			response.write(JSON.stringify({'result' : 'error'}));
+			response.end();
+		} else {
+			next();
+		}
+		}
     //Funciton to add a restaurant to the collection of restaurants in the DB
     //Parameters: JSON object with attribute(s): {name,dscr}
     //Returns: JSON object with attribute(s): {name,dscr}
