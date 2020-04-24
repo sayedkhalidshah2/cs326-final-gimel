@@ -25,11 +25,11 @@ function addItem() {
 		let itemCost = document.getElementById("itemcost").value;
 		let itemDescription = document.getElementById("itemdescription").value;
 		let itemGroup = document.getElementById("itemgroup").value;
-		const data = { "name" : itemName,"cost": itemCost, 
-						"desc": itemDescription, 'type':itemGroup }; // -- (1)
+		const data = { "rest": "sylvan","name" : itemName,"cost": itemCost, 
+						"descr": itemDescription, 'type':itemGroup }; // -- (1)
 		const newURL = url + "/menus/" + data +"/create";; // used to be ?name=" + counterName; -- (2)
 		console.log("AddingItemCreate: fetching " + newURL);
-		const resp = await postData(newURL, data) ;// used to be fetch -- (3)
+		const resp = await postData("http://localhost:8080/menus/sylvan", data) ;// used to be fetch -- (3)
 		const j = await resp.json();
 
 		if (j["result"] !== "error") {
@@ -45,17 +45,14 @@ function addItem() {
 function readItem() {
 	(async () => {
 		let itemName = document.getElementById("itemname").value;
-		let itemCost = document.getElementById("itemcost").value;
-		let itemDescription = document.getElementById("itemdescription").value;
-		let itemGroup = document.getElementById("itemgroup").value;
-		const data = { "name" : itemName,"cost": itemCost, 
-						"desc": itemDescription, 'type':itemGroup }; // -- (1)
-		const newURL = url + "/menus/" + data + "/read"; // used to be ?name=" + counterName; -- (2)
+		let itemRest = "sylvan";
+		const newURL = url + "/menus/" + itemRest + "/"+itemName; // used to be ?name=" + counterName; -- (2)
 		console.log("counterRead: fetching " + newURL);
-		const resp = await postData(newURL, data);
+		const resp = await fetch(newURL);
 		const j = await resp.json();
+		console.log(j)
 		if (j["result"] !== "error") {
-	    document.getElementById("output").innerHTML = "201: <b>"  + itemName + ", " + itemDescription + " value = " + j["value"] + "</b>";
+	    document.getElementById("output").innerHTML = "201: <b>"  + itemName + ", " + itemDescription + " value = " + j.body["value"] + "</b>";
 		} else {
 	    document.getElementById("output").innerHTML = "200: " +  itemName + ", " + itemDescription + " not found.</b>";
 		}	    
