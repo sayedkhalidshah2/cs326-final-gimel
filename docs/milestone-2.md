@@ -514,20 +514,20 @@ CRUD Operation:
 
 The Create button adds a new item to the restaurent.
 
-Mockup Create:
+Button Create:
 ![Buisness Page](Mockups/Create.PNG)
 
 
 The read button get an item using the item name. This button also check if an item exists in the database,
-Buisness Read:
+Button Read:
 ![Buisness Page](Mockups/Read.PNG)
 
 The Update button gets and item by using the item name and overwrite it's cost value or description etc.
 
-Mockup Update:
+ButtonUpdate:
 ![Buisness Page](Mockups/Update.PNG)
 
 The delete button finds an item by name and delte it from the collections. 
 
-Buisness Delete:
+Button Delete:
 ![Buisness Page](Mockups/delete.PNG)
