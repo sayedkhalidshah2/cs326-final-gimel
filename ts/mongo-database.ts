@@ -48,12 +48,10 @@ export class Database {
     public async addItem(rest: string, item:string, cost:number, descr: string, type:string) : Promise<any> {
     	let db = this.client.db(this.dbName)
     	let collectionR = db.collection("Resturaunts")
-    	console.log(rest)
-    	let resultR = await collectionR.findOne( {"name": rest} )		
-    	if(resultR === null){
-    		return -1
-    	}
-
+		let resultR = await collectionR.findOne( {"name": rest} )		
+    	// if(resultR === null){
+    	// 	return -1
+    	// }
     	let collection = db.collection(rest)
     	console.log("putting " + item)
     	let result = await collection.updateOne( {"name": item}, 

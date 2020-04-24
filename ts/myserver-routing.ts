@@ -59,7 +59,8 @@ export class MyServer {
     private async addResturaunt(request, response) : Promise<void> {
     	console.log("adding resturaunt")
     	let obj = await this.theDatabase.addResturaunt(request.body.name, request.body.dscr)
-    	response.status(201).send(JSON.stringify(obj))
+		response.status(201).send(JSON.stringify(obj))
+		response.end()
 
     }
 	
@@ -67,12 +68,16 @@ export class MyServer {
     //Parameters: JSON object with attribute(s): {name,cost,dscr,rest,type}
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
     private async addItem(request, response) : Promise<void> {
-    	console.log("adding Item")
+		console.log("adding Item")
+		console.log(request.params.rest)
+		console.log( request.body.name)
     	let obj = await this.theDatabase.addItem(request.params.rest, request.body.name, request.body.cost, request.body.descr, request.body.type )
-    	if(obj === -1){
+		
+		if(obj === -1){
     		response.status(404).send("Resturaunt " + request.params.rest + " not found.")
     	}
-    	response.status(201).send(JSON.stringify(obj))
+		response.status(201).send(JSON.stringify(obj))
+		response.end()
 
     }
 
@@ -81,7 +86,8 @@ export class MyServer {
     //Returns: JSON object with attribute(s): {menus: [List of restuaurants]}
     private async getResturants(request, response):  Promise<void> {
     	let rest = await this.theDatabase.getResturaunts()
-    	response.status(200).send(JSON.stringify(rest))
+		response.status(201).send(JSON.stringify(rest))
+		response.end()
     }
 
     //Gets them menu of a restaurant in the DB 
@@ -92,7 +98,8 @@ export class MyServer {
     public async getResturauntItems(request, response) : Promise<void> {
     	let rest = request.params.rest
     	let obj = await this.theDatabase.getResturauntItems(rest)
-    	response.status(200).send(JSON.stringify(obj))
+		response.status(201).send(JSON.stringify(obj))
+		response.end()
     }
 
     //Gets an item from a  menu of a restaurant in the DB 
@@ -103,12 +110,13 @@ export class MyServer {
     //EX: 
     public async getItem(request,response) : Promise<void> {
     	let rest = request.params.rest
-    		let item = request.params.item
-    		console.log(rest)
-    		console.log(item)
+		let item = request.params.item
+		console.log(rest)
+		console.log(item)
     	let obj = await this.theDatabase.getItem(rest, item)
     	//Break apart the object returned by the DB:
-    	response.status(200).send(JSON.stringify(obj))
+		response.status(201).send(JSON.stringify(obj))
+		response.end()
 
     }
 
@@ -118,13 +126,15 @@ export class MyServer {
     //item: the name of the item
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
     //EX: 
-    private async deleteItem(request,response) : Promise<void> {
+    public async deleteItem(request,response) : Promise<void> {
     	let rest = request.params.rest
-    	let name = request.params.name
+		let name = request.params.name
+		console.log("Deleting: "+name)
     	// let obj = await this.theDatabase.getItem(rest,name)
     	//Break apart the object returned by the DB:
     	let obj = await this.theDatabase.deleteItem(rest,name)
-    	response.status(200).send(JSON.stringify(obj))
+		response.status(201).send(JSON.stringify(obj))
+		response.end()
 
 
     }
@@ -135,7 +145,8 @@ export class MyServer {
     	//Break apart the object returned by the DB:
 
     	let obj = await this.theDatabase.deleteResturaunt(rest)
-    	response.status(200).send(JSON.stringify(obj))
+		response.status(201).send(JSON.stringify(obj))
+		response.end()
 
 
     }
