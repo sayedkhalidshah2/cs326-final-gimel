@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 
-import { URI } from "./secure"
+import { URI } from "../secure"
 export class Database {
 		
 
