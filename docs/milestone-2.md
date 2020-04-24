@@ -509,4 +509,25 @@ All response data is returned as a JSON object
   </tr>
 </table>
 
+CRUD Operation:
 
+
+The Create button adds a new item to the restaurent.
+
+Mockup Create:
+![Buisness Page](Mockups/Create.PNG)
+
+
+The read button get an item using the item name. This button also check if an item exists in the database,
+Buisness Read:
+![Buisness Page](Mockups/Read.PNG)
+
+The Update button gets and item by using the item name and overwrite it's cost value or description etc.
+
+Mockup Update:
+![Buisness Page](Mockups/Update.PNG)
+
+The delete button finds an item by name and delte it from the collections. 
+
+Buisness Delete:
+![Buisness Page](Mockups/Delete.PNG)
