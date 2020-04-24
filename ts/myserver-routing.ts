@@ -58,8 +58,7 @@ export class MyServer {
     //Returns: JSON object with attribute(s): {name,dscr}
     private async addResturaunt(request, response) : Promise<void> {
     	console.log("adding resturaunt")
-    	let name = request.body.rest
-    	let obj = await this.theDatabase.addResturaunt(name, request.body.dscr)
+    	let obj = await this.theDatabase.addResturaunt(request.body.name, request.body.dscr)
     	response.status(201).send(JSON.stringify(obj))
 
     }
@@ -69,7 +68,10 @@ export class MyServer {
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
     private async addItem(request, response) : Promise<void> {
     	console.log("adding Item")
-    	let obj = await this.theDatabase.addItem(request.body.rest, request.body.name, request.body.cost, request.body.descr, request.body.type )
+    	let obj = await this.theDatabase.addItem(request.params.rest, request.body.name, request.body.cost, request.body.descr, request.body.type )
+    	if(obj === -1){
+    		response.status(404).send("Resturaunt " + request.params.rest + " not found.")
+    	}
     	response.status(201).send(JSON.stringify(obj))
 
     }
@@ -101,9 +103,9 @@ export class MyServer {
     //EX: 
     public async getItem(request,response) : Promise<void> {
     	let rest = request.params.rest
-		let item = request.params.item
-		console.log(rest)
-		console.log(item)
+    		let item = request.params.item
+    		console.log(rest)
+    		console.log(item)
     	let obj = await this.theDatabase.getItem(rest, item)
     	//Break apart the object returned by the DB:
     	response.status(200).send(JSON.stringify(obj))
