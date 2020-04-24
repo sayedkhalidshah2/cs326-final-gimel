@@ -530,4 +530,4 @@ Mockup Update:
 The delete button finds an item by name and delte it from the collections. 
 
 Buisness Delete:
-![Buisness Page](Mockups/Delete.PNG)
+![Buisness Page](Mockups/delete.PNG)
