@@ -16,7 +16,8 @@ export class MyServer {
     	this.router.use((request, response, next) => {
 	    response.header("Content-Type","application/json")
 	    response.header("Access-Control-Allow-Origin", "*")
-	    response.header("Access-Control-Allow-Headers", "*")
+		response.header("Access-Control-Allow-Headers", "*")
+		response.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
 	    next()
     	})
     	// Serve static pages from a particular path.
@@ -128,11 +129,11 @@ export class MyServer {
     //EX: 
     public async deleteItem(request,response) : Promise<void> {
     	let rest = request.params.rest
-		let name = request.params.name
-		console.log("Deleting: "+name)
+		let name = request.params.item
+		console.log("Deleting: "+rest+' '+name)
     	// let obj = await this.theDatabase.getItem(rest,name)
     	//Break apart the object returned by the DB:
-    	let obj = await this.theDatabase.deleteItem(rest,name)
+		let obj = await this.theDatabase.deleteItem(rest,name)
 		response.status(201).send(JSON.stringify(obj))
 		response.end()
 
