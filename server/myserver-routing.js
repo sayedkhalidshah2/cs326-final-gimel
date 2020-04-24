@@ -54,7 +54,7 @@ var MyServer = /** @class */ (function () {
             next();
         });
         // Serve static pages from a particular path.
-        this.server.use("/", express.static("./html"));
+        this.server.use("/", express.static("./client"));
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: false }));
         this.server.use(function (req, res, next) {
@@ -75,7 +75,7 @@ var MyServer = /** @class */ (function () {
         //// HANDLE ERRORS WITH A WILDCARD (*)
         // this.router.get("/*", this.errorHandler.bind(this))
         // Start up the counter endpoint at '/'.
-        this.server.use("/", this.router);
+        this.server.use("/api", this.router);
     }
     MyServer.prototype.errorHandler = function (request, response, next) {
         return __awaiter(this, void 0, void 0, function () {
