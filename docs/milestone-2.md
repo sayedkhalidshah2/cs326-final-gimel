@@ -1,6 +1,6 @@
 API Documentation
 
-<span style="text-decoration:underline;">GET /menus</span>
+<span style="text-decoration:underline;">GET api/menus</span>
 
 Gives back a list of restaurants that are in BergerBar
 
@@ -21,7 +21,7 @@ Gives back a list of restaurants that are in BergerBar
    </td>
    <td>N/A
    </td>
-   <td>localhost:8080/menu
+   <td>localhost:8080/api/menu
    </td>
   </tr>
 </table>
@@ -50,7 +50,7 @@ Gives back a list of restaurants that are in BergerBar
 </table>
 
 
-<span style="text-decoration:underline;">POST /menus</span>
+<span style="text-decoration:underline;">POST api/menus</span>
 
 Onboards a new restaurant
 
@@ -71,7 +71,7 @@ Onboards a new restaurant
    </td>
    <td>(Required) The desired name of the restaurant
    </td>
-   <td>localhost:8080/menus/
+   <td>localhost:8080/api/menus/
 <p>
 {“name” : “greenos”, 
 <p>
@@ -120,7 +120,7 @@ Onboards a new restaurant
 </table>
 
 
-<span style="text-decoration:underline;">GET /menus/{rest}</span>
+<span style="text-decoration:underline;">GET api/menus/{rest}</span>
 
 Gives back a list of items from a restaurant
 
@@ -141,7 +141,7 @@ Gives back a list of items from a restaurant
    </td>
    <td>(Required) The name of restaurant
    </td>
-   <td>localhost:8080/menu/greenos
+   <td>localhost:8080/api/menu/greenos
    </td>
   </tr>
 </table>
@@ -170,7 +170,7 @@ Gives back a list of items from a restaurant
 </table>
 
 
-<span style="text-decoration:underline;">DELETE /menus/{rest}</span>
+<span style="text-decoration:underline;">DELETE api/menus/{rest}</span>
 
 Removes a restaurant
 
@@ -191,7 +191,7 @@ Removes a restaurant
    </td>
    <td>(Required) The restaurant the menu item belongs to
    </td>
-   <td>localhost:8080/menu/greenos
+   <td>localhost:8080/api/menu/greenos
    </td>
   </tr>
 </table>
@@ -228,7 +228,7 @@ Removes a restaurant
 </table>
 
 
-<span style="text-decoration:underline;">GET /menus/{rest}/{item}</span>
+<span style="text-decoration:underline;">GET api/menus/{rest}/{item}</span>
 
 Gives back a single item from a restaurant (eg. Gutbuster)
 
@@ -251,7 +251,7 @@ There are two required parameters and zero optional parameters for this endpoint
    </td>
    <td>(Required) The name of the restaurant
    </td>
-   <td>localhost:8080/menus/greenos/gutbuster
+   <td>localhost:8080/api/menus/greenos/gutbuster
    </td>
   </tr>
   <tr>
@@ -322,7 +322,7 @@ All response data is returned as a JSON object
 </table>
 
 
-<span style="text-decoration:underline;">POST /menus/{rest}</span>
+<span style="text-decoration:underline;">POST api/menus/{rest}</span>
 
 Adds an item to a restaurant
 
@@ -345,7 +345,7 @@ There are two required parameters and zero optional parameters for this endpoint
    </td>
    <td>(Required) The name of the restaurant
    </td>
-   <td>localhost:8080/menu/greenos/
+   <td>localhost:8080/api/menu/greenos/
 <p>
 {“name” : “bagel” 
 <p>
@@ -416,7 +416,7 @@ All response data is returned as a JSON object
 </table>
 
 
-<span style="text-decoration:underline;">DELETE /menus/{rest}/{item}</span>
+<span style="text-decoration:underline;">DELETE api/menus/{rest}/{item}</span>
 
 Deletes an item from a restaurant
 
@@ -439,7 +439,7 @@ There are two required parameters and zero optional parameters for this endpoint
    </td>
    <td>(Required) The name of the restaurant
    </td>
-   <td>localhost:8080/menu/greenos/gutbuster
+   <td>localhost:8080/api/menu/greenos/gutbuster
    </td>
   </tr>
   <tr>
