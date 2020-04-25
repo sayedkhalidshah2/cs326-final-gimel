@@ -29,7 +29,7 @@ function addItem() {
 						"descr": itemDescription, 'type':itemGroup }; // -- (1)
 		const newURL = url + "/menus/" + data +"/create"; // used to be ?name=" + counterName; -- (2)
 		console.log("AddingItemCreate: fetching " + newURL);
-		const resp = await postData(url+"menus/sylvan", data) ;// used to be fetch -- (3)
+		const resp = await postData(url+"/menus/sylvan", data) ;// used to be fetch -- (3)
 		const j = await resp.json();
 
 		if (j["result"] !== "error") {
@@ -73,7 +73,7 @@ function updateItem() {
 						"descr": itemDescription, 'type':itemGroup }; // -- (1)
 		const newURL = url + "/menus/" + data +"/create";; // used to be ?name=" + counterName; -- (2)
 		console.log("AddingItemCreate: fetching " + newURL);
-		const resp = await postData(url+"menus/sylvan", data) ;// used to be fetch -- (3)
+		const resp = await postData(url+"/menus/sylvan", data) ;// used to be fetch -- (3)
 		const j = await resp.json();
 
 		if (j["result"] !== "error") {
