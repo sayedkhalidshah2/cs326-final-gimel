@@ -1,13 +1,13 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-var URI = "";
+var pass = ""
 if (!process.env.MONGO_KEY) {
-	URI = require('secret.json')
+	pass = require("./secrets.json").MONGO_KEY
 }
 export class Database {
 		
 	private MongoClient = require("mongodb").MongoClient;
 
-	private uri = process.env.MONGO_KEY || URI
+	private uri = process.env.MONGO_KEY || pass
     private client;
     private collectionName : string;
     private dbName : string = "BergerCluster";
@@ -50,7 +50,7 @@ export class Database {
     public async addItem(rest: string, item:string, cost:number, descr: string, type:string) : Promise<any> {
     	let db = this.client.db(this.dbName)
     	let collectionR = db.collection("Resturaunts")
-		let resultR = await collectionR.findOne( {"name": rest} )		
+    	let resultR = await collectionR.findOne( {"name": rest} )		
     	// if(resultR === null){
     	// 	return -1
     	// }
@@ -97,7 +97,7 @@ export class Database {
     	let result
     	console.log("deleting "+ rest)
     	try {result = await collection.drop()}
-    	catch(e) {   }
+    	catch(e) { console.log(e)   }
     	console.log("result = " + result)
 
     	let collection2 = db.collection("Resturaunts")
@@ -116,24 +116,24 @@ export class Database {
     	return result 
     }
 
-	// public async isFound(rest: string,name:string) : Promise<boolean>  {
-	// 	console.log("isFound: rest = " + rest)
-	// 	let v = await this.get(rest,name)
-	// 	console.log("is found result = " + v)
-	// 	if (v === null) {
-	//     	return false
-	// 	} else {
-	//     	return true
-	// 	}
-	// }
-	public async isFound(rest: string) : Promise<boolean>  {
-		console.log("isFound: key = " + rest);
-		let v = await this.getResturauntItems(rest);
-		console.log("is found result = " + v);
-		if (v === null) {
-			return false;
-		} else {
-			return true;
-		}
-		}
+    // public async isFound(rest: string,name:string) : Promise<boolean>  {
+    // 	console.log("isFound: rest = " + rest)
+    // 	let v = await this.get(rest,name)
+    // 	console.log("is found result = " + v)
+    // 	if (v === null) {
+    //     	return false
+    // 	} else {
+    //     	return true
+    // 	}
+    // }
+    public async isFound(rest: string) : Promise<boolean>  {
+    	console.log("isFound: key = " + rest)
+    	let v = await this.getResturauntItems(rest)
+    	console.log("is found result = " + v)
+    	if (v === null) {
+    		return false
+    	} else {
+    		return true
+    	}
+    }
 }

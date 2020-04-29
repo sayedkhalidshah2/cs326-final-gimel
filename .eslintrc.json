@@ -6,7 +6,10 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+
     ],
     "globals": {
         "Atomics": "readonly",
@@ -36,6 +39,12 @@
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "@typescript-eslint/typedef": [
+            "error",
+            {
+              "variableDeclaration": true
+            }
+          ]
     }
 }
