@@ -35,14 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable no-mixed-spaces-and-tabs */
 var express = require("express");
 var MyServer = /** @class */ (function () {
     function MyServer(db) {
         // Server stuff: use express instead of http.createServer
         this.server = express();
-        this.port = 8080;
         this.router = express.Router();
         this.theDatabase = db;
         // from https://enable-cors.org/server_expressjs.html
@@ -66,28 +65,30 @@ var MyServer = /** @class */ (function () {
         this.router.get("/menus", this.getResturants.bind(this));
         this.router.post("/menus", this.addResturaunt.bind(this));
         this.router.get("/menus/:rest", this.getResturauntItems.bind(this));
-        this.router["delete"]("/menus/:rest", this.deleteResturaunt.bind(this));
+        this.router.delete("/menus/:rest", this.deleteResturaunt.bind(this));
         this.router.get("/menus/:rest/:item", [this.errorHandler.bind(this), this.getItem.bind(this)]);
         this.router.post("/menus/:rest", this.addItem.bind(this));
-        this.router["delete"]("/menus/:rest/:item", this.deleteItem.bind(this));
+        this.router.delete("/menus/:rest/:item", this.deleteItem.bind(this));
         // this.router.get("/users/:userId/update", [this.errorHandler.bind(this), this.updateHandler.bind(this) ])
         // this.router.get("/users/:userId/delete", [this.errorHandler.bind(this), this.deleteHandler.bind(this) ])
         //// HANDLE ERRORS WITH A WILDCARD (*)
         // this.router.get("/*", this.errorHandler.bind(this))
         // Start up the counter endpoint at '/'.
-        this.server.use("/api", this.router);
+        this.server.use("/", this.router);
     }
     MyServer.prototype.errorHandler = function (request, response, next) {
         return __awaiter(this, void 0, void 0, function () {
             var value;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.params['item'] + "-" + request.body.name)];
+                    case 0: return [4 /*yield*/, this.theDatabase.isFound(request.params["item"] + "-" + request.body.name)
+                        //	console.log("result from database.isFound: " + JSON.stringify(value));
+                    ];
                     case 1:
                         value = _a.sent();
                         //	console.log("result from database.isFound: " + JSON.stringify(value));
                         if (!value) {
-                            response.write(JSON.stringify({ 'result': 'error' }));
+                            response.write(JSON.stringify({ "result": "error" }));
                             response.end();
                         }
                         else {
@@ -226,7 +227,7 @@ var MyServer = /** @class */ (function () {
                     case 0:
                         rest = request.params.rest;
                         name = request.params.item;
-                        console.log("Deleting: " + rest + ' ' + name);
+                        console.log("Deleting: " + rest + " " + name);
                         return [4 /*yield*/, this.theDatabase.deleteItem(rest, name)];
                     case 1:
                         obj = _a.sent();
@@ -260,3 +261,4 @@ var MyServer = /** @class */ (function () {
     return MyServer;
 }());
 exports.MyServer = MyServer;
+//# sourceMappingURL=myserver-routing.js.map
