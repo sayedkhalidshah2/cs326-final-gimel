@@ -1,5 +1,9 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
+<<<<<<< HEAD
 let pass = ""
+=======
+var pass = ""
+>>>>>>> 335da6e... attempting to generate pages dynamicaly
 if (!process.env.MONGO_KEY) {
 	pass = require("./secrets.json").MONGO_KEY
 }
@@ -47,10 +51,17 @@ export class Database {
     }
 
 	
+<<<<<<< HEAD
     public async addItem(rest: string, item: string, cost: number, descr: string, type: string): Promise<any> {
     	const db = this.client.db(this.dbName)
     	const collectionR = db.collection("Resturaunts")
     	const resultR = await collectionR.findOne( {"name": rest} )		
+=======
+    public async addItem(rest: string, item:string, cost:number, descr: string, type:string) : Promise<any> {
+    	let db = this.client.db(this.dbName)
+    	let collectionR = db.collection("Resturaunts")
+    	let resultR = await collectionR.findOne( {"name": rest} )		
+>>>>>>> 335da6e... attempting to generate pages dynamicaly
     	// if(resultR === null){
     	// 	return -1
     	// }
@@ -135,9 +146,15 @@ export class Database {
     //     	return true
     // 	}
     // }
+<<<<<<< HEAD
     public async isFound(rest: string): Promise<boolean>  {
     	console.log("isFound: key = " + rest)
     	const v = await this.getResturauntItems(rest)
+=======
+    public async isFound(rest: string) : Promise<boolean>  {
+    	console.log("isFound: key = " + rest)
+    	let v = await this.getResturauntItems(rest)
+>>>>>>> 335da6e... attempting to generate pages dynamicaly
     	console.log("is found result = " + v)
     	if (v === null) {
     		return false

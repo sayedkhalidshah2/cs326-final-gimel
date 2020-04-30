@@ -7,8 +7,15 @@
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
+<<<<<<< HEAD
         "plugin:@typescript-eslint/recommended"
         ],
+=======
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+
+    ],
+>>>>>>> 335da6e... attempting to generate pages dynamicaly
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -37,6 +44,12 @@
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "@typescript-eslint/typedef": [
+            "error",
+            {
+              "variableDeclaration": true
+            }
+          ]
     }
 }
