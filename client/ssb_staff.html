@@ -12,7 +12,7 @@
       <title>Sylvan Snack Bar</title>
     </head>
       
-    <body> 
+    <body onload="readMenu('sylvan')"> 
         <section>
           <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #010d16;">
             <a class="navbar-brand" href="#" style="color: #f9f9fa;">Icon here</a>
@@ -41,14 +41,8 @@
             <h4 class="display-6"style="text-align: center ;">Business Information</h4>
             <p class="p-3 mb-2 bg-secondary text-white" style="text-align: center ;">Business Information about the business, deliveries, etc</p>
             <h4 class="display-6" >Menu</h4>
-            <section class="p-3 mb-2 bg-secondary text-white" >
-              <p >Paninis</p>
-              <p >Gluten Free..............$5</p>
-              <button onclick="deleteItem()"  type="button" class="btn btn-danger">Delete Item</button>
-              <p >Sandwitch</p>
-              <p >Ham......................$5</p>
-              <button onclick="deleteItem()" type="button" class="btn btn-danger">Delete Item</button>
-            </section>
+            <section id = "menu" class="p-3 mb-2 bg-secondary text-white" ></section>
+
   
             
           </div>
@@ -58,17 +52,17 @@
               <span class="input-group-text">$</span>
             <input type="text" class="form-control" placeholder="Item Cost"id="itemcost" >
             <input type="text"  class="form-control" placeholder="Item Description" id="itemdescription">
-              <button onclick="addItem()" type="button"class="btn btn-primary">Add</button>
-              <button onclick="readItem()" type="button"class="btn btn-primary">Read</button>
-              <button onclick="updateItem()" type="button"class="btn btn-primary">Update</button>
-              <button onclick="deleteItem()" type="button"class="btn btn-primary">Delete</button>
+              <button onclick="addItem('sylvan')" type="button"class="btn btn-primary">Add</button>
+              <!-- <button onclick="readItem('sylvan')" type="button"class="btn btn-primary">Read</button> -->
+              <button onclick="updateItem('sylvan')" type="button"class="btn btn-primary">Update</button>
+              <button onclick="deleteItem('sylvan')" type="button"class="btn btn-primary">Delete</button>
           </section>
         </section>
-        <div class="col">
+        <!-- <div class="col">
           <p id="output" style="font-size: xx-large;">
             <small style="font-size: small;">Hello</small>
           </p>
-        </div>
+        </div> -->
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

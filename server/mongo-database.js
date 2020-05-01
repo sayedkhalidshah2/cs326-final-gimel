@@ -37,15 +37,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 /* eslint-disable no-mixed-spaces-and-tabs */
-var URI = "";
-if (!process.env.MONGO_KEY) {
-    URI = require('secret.json');
-}
+// import { URI } from "./secure.json"
 var Database = /** @class */ (function () {
     function Database() {
         var _this = this;
+        this.URI = require("./secure.json");
         this.MongoClient = require("mongodb").MongoClient;
-        this.uri = process.env.MONGO_KEY || URI;
+        this.uri = process.env.MONGO_KEY || this.URI;
         this.dbName = "BergerCluster";
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true, useUnifiedTopology: true });
         // Open up a connection to the client.

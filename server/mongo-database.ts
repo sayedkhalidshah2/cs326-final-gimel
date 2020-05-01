@@ -1,13 +1,12 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-var URI = "";
-if (!process.env.MONGO_KEY) {
-	URI = require('secret.json')
-}
+// import { URI } from "./secure.json"
 export class Database {
+
+	URI = require("./secure.json").URI
 		
 	private MongoClient = require("mongodb").MongoClient;
 
-	private uri = process.env.MONGO_KEY || URI
+	private uri = process.env.MONGO_KEY || this.URI
     private client;
     private collectionName : string;
     private dbName : string = "BergerCluster";
@@ -116,6 +115,7 @@ export class Database {
     	return result 
     }
 
+
 	// public async isFound(rest: string,name:string) : Promise<boolean>  {
 	// 	console.log("isFound: rest = " + rest)
 	// 	let v = await this.get(rest,name)
@@ -128,6 +128,7 @@ export class Database {
 	// }
 	public async isFound(rest: string) : Promise<boolean>  {
 		console.log("isFound: key = " + rest);
+			// 	let v = await this.get(rest,name)
 		let v = await this.getResturauntItems(rest);
 		console.log("is found result = " + v);
 		if (v === null) {
