@@ -54,12 +54,17 @@ export class MyServer {
     	this.server.use("/", this.router)
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     private async errorHandler(request, response, next): Promise<void> {
     	const value: boolean = await this.theDatabase.isFound(request.params["item"]+"-"+request.body.name)
 =======
     private async errorHandler(request, response, next) : Promise<void> {
     	let value : boolean = await this.theDatabase.isFound(request.params["item"]+"-"+request.body.name)
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    private async errorHandler(request, response, next): Promise<void> {
+    	const value: boolean = await this.theDatabase.isFound(request.params["item"]+"-"+request.body.name)
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	//	console.log("result from database.isFound: " + JSON.stringify(value));
     	if (!value) {
     		response.write(JSON.stringify({"result" : "error"}))
@@ -74,10 +79,14 @@ export class MyServer {
     private async addResturaunt(request, response): Promise<void> {
     	console.log("adding resturaunt")
 <<<<<<< HEAD
+<<<<<<< HEAD
     	const obj = await this.theDatabase.addResturaunt(request.body.name, request.body.dscr)
 =======
     	let obj = await this.theDatabase.addResturaunt(request.body.name, request.body.dscr)
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    	const obj = await this.theDatabase.addResturaunt(request.body.name, request.body.dscr)
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
 
@@ -86,6 +95,7 @@ export class MyServer {
     //Adds an item to a restaurant in the DB 
     //Parameters: JSON object with attribute(s): {name,cost,dscr,rest,type}
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
+<<<<<<< HEAD
 <<<<<<< HEAD
     private async addItem(request, response): Promise<void> {
     	console.log("adding Item")
@@ -99,6 +109,13 @@ export class MyServer {
     	console.log( request.body.name)
     	let obj = await this.theDatabase.addItem(request.params.rest, request.body.name, request.body.cost, request.body.descr, request.body.type )
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    private async addItem(request, response): Promise<void> {
+    	console.log("adding Item")
+    	console.log(request.params.rest)
+    	console.log( request.body.name)
+    	const obj = await this.theDatabase.addItem(request.params.rest, request.body.name, request.body.cost, request.body.descr, request.body.type )
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
 		
     	if(obj === -1){
     		response.status(404).send("Resturaunt " + request.params.rest + " not found.")
@@ -113,10 +130,14 @@ export class MyServer {
     //Returns: JSON object with attribute(s): {menus: [List of restuaurants]}
     private async getResturants(request, response):  Promise<void> {
 <<<<<<< HEAD
+<<<<<<< HEAD
     	const rest = await this.theDatabase.getResturaunts()
 =======
     	let rest = await this.theDatabase.getResturaunts()
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    	const rest = await this.theDatabase.getResturaunts()
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	response.status(201).send(JSON.stringify(rest))
     	response.end()
     }
@@ -127,6 +148,7 @@ export class MyServer {
     //Returns: JSON object with attribute(s): {items : [List of menu objects]}
     //EX: 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public async getResturauntItems(request, response): Promise<void> {
     	const rest = request.params.rest
     	const obj = await this.theDatabase.getResturauntItems(rest)
@@ -135,6 +157,11 @@ export class MyServer {
     	let rest = request.params.rest
     	let obj = await this.theDatabase.getResturauntItems(rest)
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    public async getResturauntItems(request, response): Promise<void> {
+    	const rest = request.params.rest
+    	const obj = await this.theDatabase.getResturauntItems(rest)
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
     }
@@ -145,6 +172,7 @@ export class MyServer {
     //item: the name of the item
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
     //EX: 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public async getItem(request,response): Promise<void> {
     	const rest = request.params.rest
@@ -160,6 +188,14 @@ export class MyServer {
     	console.log(item)
     	let obj = await this.theDatabase.getItem(rest, item)
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    public async getItem(request,response): Promise<void> {
+    	const rest = request.params.rest
+    	const item = request.params.item
+    	console.log(rest)
+    	console.log(item)
+    	const obj = await this.theDatabase.getItem(rest, item)
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	//Break apart the object returned by the DB:
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
@@ -172,6 +208,7 @@ export class MyServer {
     //item: the name of the item
     //Returns: JSON object with attribute(s): {name,cost,dscr,rest,type}
     //EX: 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public async deleteItem(request,response): Promise<void> {
     	const rest = request.params.rest
@@ -189,6 +226,15 @@ export class MyServer {
     	//Break apart the object returned by the DB:
     	let obj = await this.theDatabase.deleteItem(rest,name)
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    public async deleteItem(request,response): Promise<void> {
+    	const rest = request.params.rest
+    	const name = request.params.item
+    	console.log("Deleting: "+rest+" "+name)
+    	// let obj = await this.theDatabase.getItem(rest,name)
+    	//Break apart the object returned by the DB:
+    	const obj = await this.theDatabase.deleteItem(rest,name)
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
 
@@ -220,7 +266,7 @@ export class MyServer {
     	response.end()
 =======
 
-    	let obj = await this.theDatabase.deleteResturaunt(rest)
+    	const obj = await this.theDatabase.deleteResturaunt(rest)
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
 

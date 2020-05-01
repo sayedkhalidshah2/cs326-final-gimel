@@ -1,9 +1,13 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 let pass = ""
 =======
 var pass = ""
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+let pass = ""
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
 if (!process.env.MONGO_KEY) {
 	pass = require("./secrets.json").MONGO_KEY
 }
@@ -52,16 +56,22 @@ export class Database {
 
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     public async addItem(rest: string, item: string, cost: number, descr: string, type: string): Promise<any> {
     	const db = this.client.db(this.dbName)
     	const collectionR = db.collection("Resturaunts")
     	const resultR = await collectionR.findOne( {"name": rest} )		
+<<<<<<< HEAD
 =======
     public async addItem(rest: string, item:string, cost:number, descr: string, type:string) : Promise<any> {
     	let db = this.client.db(this.dbName)
     	let collectionR = db.collection("Resturaunts")
     	let resultR = await collectionR.findOne( {"name": rest} )		
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	// if(resultR === null){
     	// 	return -1
     	// }
@@ -123,6 +133,7 @@ export class Database {
     	const collection = db.collection(rest)
     	console.log("getting "+ rest)
     	const result = await collection.find().toArray()
+<<<<<<< HEAD
     	console.log("result = " + JSON.stringify(result))
     	return result 
     }
@@ -132,6 +143,8 @@ export class Database {
     	const collection = db.collection("Codes")
     	console.log("getting codes")
     	const result = await collection.findOne( {"code": code})
+=======
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	console.log("result = " + JSON.stringify(result))
     	return result 
     }
@@ -147,6 +160,7 @@ export class Database {
     // 	}
     // }
 <<<<<<< HEAD
+<<<<<<< HEAD
     public async isFound(rest: string): Promise<boolean>  {
     	console.log("isFound: key = " + rest)
     	const v = await this.getResturauntItems(rest)
@@ -155,6 +169,11 @@ export class Database {
     	console.log("isFound: key = " + rest)
     	let v = await this.getResturauntItems(rest)
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    public async isFound(rest: string): Promise<boolean>  {
+    	console.log("isFound: key = " + rest)
+    	const v = await this.getResturauntItems(rest)
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     	console.log("is found result = " + v)
     	if (v === null) {
     		return false
