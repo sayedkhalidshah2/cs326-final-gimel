@@ -8,6 +8,7 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "plugin:@typescript-eslint/recommended"
         ],
 =======
@@ -16,6 +17,10 @@
 
     ],
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+        "plugin:@typescript-eslint/recommended"
+        ],
+>>>>>>> aae94e7... added dynamic nav bar and adding/editing items
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -44,12 +49,6 @@
         "semi": [
             "error",
             "never"
-        ],
-        "@typescript-eslint/typedef": [
-            "error",
-            {
-              "variableDeclaration": true
-            }
-          ]
+        ]
     }
 }
