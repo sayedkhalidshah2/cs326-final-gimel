@@ -13,7 +13,9 @@
   <body>
 
     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #4a97ce">
-        <a class="navbar-brand" href="#">Icon here</a>
+        <a id="icon" data-toggle="pill" role="tab" class="navbar-brand" href="#v-pills-home" aria-controls="v-pills-home" >
+           <img src="./assets/images/logo.png" width="60" height="40"> BergerBar
+        </a>
         <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target=".mobileNav"  >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,17 +29,51 @@
       <div class="row" >
         <div id="sideNav" class="col-sm-2 d-none d-sm-block mobileNav "  style="height: 100vh; min-width:fit-content" >
           <div id="sideNavBack" class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height: 100vh; min-width:fit-content; " >
-
           </div>
         </div>
 
+
         <div class="col">
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">Test1</div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Test2</div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Test3</div>
-            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Test4</div>
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel">Home</div>
           </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add or edit an item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="add-item-form">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="add-item-name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Cost:</label>
+                  <input type="text" class="form-control" id="add-item-cost">
+                </div>
+                <div class="form-group">
+                <label for="message-text" class="col-form-label">Description:</label>
+                <input type="text" class="form-control" id="add-item-des">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Category:</label>
+                  <input type="text" class="form-control" id="add-item-cat">
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" id="add-item-button">Submit</button>
+                </div>
+              </form>
+            </div>
         </div>
       </div>
 
