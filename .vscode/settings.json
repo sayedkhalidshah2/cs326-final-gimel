@@ -7,15 +7,6 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-<<<<<<< HEAD
     "eslint.validate": ["javascript", "typescript", "html"]
-=======
-    
-    "files.exclude": {
-        "**/*.js": {"when": "$(basename).ts"},
-        "**/*.map": {"when": "$(basename).ts"}
-
-        
     }
->>>>>>> 335da6e... attempting to generate pages dynamicaly
 }
