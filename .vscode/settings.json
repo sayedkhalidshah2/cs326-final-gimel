@@ -6,12 +6,5 @@
     "eslint.run": "onSave",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
-    },
-    
-    "files.exclude": {
-        "**/*.js": {"when": "$(basename).ts"},
-        "**/*.map": {"when": "$(basename).ts"}
-
-        
     }
 }
