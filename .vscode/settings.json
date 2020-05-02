@@ -6,6 +6,10 @@
     "eslint.run": "onSave",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
+<<<<<<< HEAD
     },
     "eslint.validate": ["javascript", "typescript", "html"]
+=======
+    }
+>>>>>>> d7ae7df... bulk update
 }
