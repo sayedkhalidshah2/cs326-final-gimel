@@ -1,12 +1,15 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 // import { URI } from "./secure.json"
-export class Database {
 
-	URI = require("./secure.json").URI
+var URI = "";
+if (!process.env.MONGO_KEY) {
+	URI = require('secret.json')
+}
+
+export class Database {
 		
 	private MongoClient = require("mongodb").MongoClient;
-
-	private uri = process.env.MONGO_KEY || this.URI
+	private uri = process.env.MONGO_KEY || URI
     private client;
     private collectionName : string;
     private dbName : string = "BergerCluster";
