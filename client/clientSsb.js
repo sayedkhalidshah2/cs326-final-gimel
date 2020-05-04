@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-const url = " http://localhost:8080/api"
+const url = " http://0.0.0.0:8080/api"
 
 async function postData(url, data) {
 	const resp = await fetch(url,
