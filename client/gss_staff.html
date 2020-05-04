@@ -39,8 +39,7 @@
           
           <div >
             <img src="assets/images/Greenos.jpg" class="card-img-top" alt="umass" width="100%" height="150px">
-            <h1 class="display-5 text-white" style="background-color: #971B2F; text-align: center ;">Greeno's Sub Shop</h1>
-            <a href="gss_staff.html">Staff Sign In</a>
+            <h1 class="display-5 text-white" style="background-color: #971B2F; text-align: center ;">Greeno's Sub Shop Staff Page</h1>
             <h4 class="display-6"style="text-align: center ;">Business Information</h4>
             <p class="p-3 mb-2 bg-secondary text-white" style="text-align: center ;">Business Information about the business, deliveries, etc</p>
             <h4 class="display-6" >Menu</h4>
@@ -49,6 +48,17 @@
   
             
           </div>
+          <section class="input-group mb-3 p-3 mb-2 bg-secondary text-white" id = "inpot">
+            <input type="text" class="form-control" placeholder="Item Name" id="itemname">
+            <input type="text" class="form-control" placeholder="Item Group"id="itemgroup" >
+              <span class="input-group-text">$</span>
+            <input type="text" class="form-control" placeholder="Item Cost"id="itemcost" >
+            <input type="text"  class="form-control" placeholder="Item Description" id="itemdescription">
+              <button onclick="addItem('greenos')" type="button"class="btn btn-primary">Add</button>
+              <!-- <button onclick="readItem('sylvan')" type="button"class="btn btn-primary">Read</button> -->
+              <button onclick="updateItem('greenos')" type="button"class="btn btn-primary">Update</button>
+              <button onclick="deleteItem('greenos')" type="button"class="btn btn-primary">Delete</button>
+          </section>
         </section>
         <!-- <div class="col">
           <p id="output" style="font-size: xx-large;">

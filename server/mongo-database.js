@@ -1,4 +1,6 @@
 "use strict";
+/* eslint-disable no-mixed-spaces-and-tabs */
+// import { URI } from "./secure.json"
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,14 +38,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-/* eslint-disable no-mixed-spaces-and-tabs */
-// import { URI } from "./secure.json"
+var URI = "";
+if (!process.env.MONGO_KEY) {
+    URI = require('secret.json');
+}
 var Database = /** @class */ (function () {
     function Database() {
         var _this = this;
-        this.URI = require("./secure.json");
         this.MongoClient = require("mongodb").MongoClient;
-        this.uri = process.env.MONGO_KEY || this.URI;
+        this.uri = process.env.MONGO_KEY || URI;
         this.dbName = "BergerCluster";
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true, useUnifiedTopology: true });
         // Open up a connection to the client.
