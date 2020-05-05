@@ -246,6 +246,7 @@ export class MyServer {
     	//  await this.theDatabase.get(rest)
     	//Break apart the object returned by the DB:
 <<<<<<< HEAD
+<<<<<<< HEAD
     	const obj = await this.theDatabase.deleteResturaunt(rest)
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
@@ -272,6 +273,26 @@ export class MyServer {
 
 
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+    	const obj = await this.theDatabase.deleteResturaunt(rest)
+    	response.status(201).send(JSON.stringify(obj))
+    	response.end()
+    }
+	
+    private async login(request,response): Promise<void> {
+    	console.log("login")
+    	const rest = request.body.code
+    	//  await this.theDatabase.get(rest)
+    	//Break apart the object returned by the DB:
+    	const obj = await this.theDatabase.login(rest)
+    	if(!obj){
+    		response.sendStatus(404)
+    	}
+    	else{
+    		response.status(200).send(obj.rest)
+    	}
+    	response.end()
+>>>>>>> cb81dfb... auth mid-done
     }
 
     public listen(port): void  {

@@ -7,9 +7,14 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
 <<<<<<< HEAD
+<<<<<<< HEAD
     },
     "eslint.validate": ["javascript", "typescript", "html"]
 =======
     }
 >>>>>>> d7ae7df... bulk update
+=======
+    },
+    "eslint.validate": ["javascript", "typescript", "html"]
+>>>>>>> cb81dfb... auth mid-done
 }

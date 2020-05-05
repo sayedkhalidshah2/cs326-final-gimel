@@ -148,6 +148,15 @@ export class Database {
     	console.log("result = " + JSON.stringify(result))
     	return result 
     }
+	
+    public async login(code: string): Promise<string> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection("Codes")
+    	console.log("getting codes")
+    	const result = await collection.findOne( {"code": code})
+    	console.log("result = " + JSON.stringify(result))
+    	return result 
+    }
 
     // public async isFound(rest: string,name:string) : Promise<boolean>  {
     // 	console.log("isFound: rest = " + rest)
