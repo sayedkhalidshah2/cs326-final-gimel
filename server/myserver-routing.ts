@@ -42,6 +42,7 @@ export class MyServer {
     	this.router.post("/menus/:rest",this.addItem.bind(this))
     	this.router.delete("/menus/:rest/:item",this.deleteItem.bind(this))
 
+    	this.router.post("/login",this.login.bind(this))
 
     	// this.router.get("/users/:userId/update", [this.errorHandler.bind(this), this.updateHandler.bind(this) ])
     	// this.router.get("/users/:userId/delete", [this.errorHandler.bind(this), this.deleteHandler.bind(this) ])
@@ -152,12 +153,24 @@ export class MyServer {
     	const rest = request.params.rest
     	//  await this.theDatabase.get(rest)
     	//Break apart the object returned by the DB:
-
     	const obj = await this.theDatabase.deleteResturaunt(rest)
     	response.status(201).send(JSON.stringify(obj))
     	response.end()
-
-
+    }
+	
+    private async login(request,response): Promise<void> {
+    	console.log("login")
+    	const rest = request.body.code
+    	//  await this.theDatabase.get(rest)
+    	//Break apart the object returned by the DB:
+    	const obj = await this.theDatabase.login(rest)
+    	if(!obj){
+    		response.sendStatus(404)
+    	}
+    	else{
+    		response.status(200).send(obj.rest)
+    	}
+    	response.end()
     }
 
     public listen(port): void  {

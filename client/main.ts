@@ -77,6 +77,14 @@ $("#add-resturaunt-button").click( async function (event) {
 
 })
 
+//login logic
+$("#login-button").click( async function (event) {
+	console.log("login clicked")
+	const code = $("#login-code").val() as string
+	await login(code)
+	// location.reload()
+
+})
 
 async function createPage(resturaunt): Promise<any>{
 	// TODO: do this only once per load
@@ -88,22 +96,20 @@ async function createPage(resturaunt): Promise<any>{
 
 	console.log(`creating ${resturaunt}`)
 	const items: Array<any> = await getData("/menus/" + resturaunt)
-
 	let html = ""
 
 	for(const item of items){
 		console.log(item)
 		html += 
-			`<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">${item.name}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">$${item.cost}</h6>
-					<p class="card-text">${item.descr}</p>
-					<button type="button" class="btn btn-danger" onclick="deleteItem('${resturaunt}' , '${item.name}')">Remove item</button>
-				</div>
-			</div>`
+		`<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">${item.name}</h5>
+				<h6 class="card-subtitle mb-2 text-muted">$${item.cost}</h6>
+				<p class="card-text">${item.descr}</p>
+				<button type="button" class="btn btn-danger" onclick="deleteItem('${resturaunt}' , '${item.name}')">Remove item</button>
+			</div>
+		</div>`
 	}
-
 
 	const button =	$("<button>",{
 		class: "btn btn-primary",
@@ -119,13 +125,9 @@ async function createPage(resturaunt): Promise<any>{
 		"data-source": resturaunt,
 		click: deleteRest
 	})
-
-
-
 	$("#pill-" + resturaunt).html(html).append(button, button2)
-	
-
 }
+
 async function addItem(rest = "default ",name="default", cost = 0, des= "default", cat = "default"): Promise<any>{
 	console.log(`adding item ${name}`)
 	const data = {
@@ -164,6 +166,24 @@ async function deleteRest(restaurant): Promise<any>{
 
 }
 
+async function login(code: string): Promise<any>{
+
+	const data = {"code": code}
+
+	console.log(data)
+
+	const response = (await postData("/login", data)).json
+
+
+	if(response.status === 404){
+		console.log("yikes")
+	}
+	else{
+		console.log(response)
+		// document.cookie = `bergerbar=${response}`
+	}
+}
+
 async function getData(url): Promise<any>{
 	const response = await fetch(url, {
 		method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -178,7 +198,7 @@ async function getData(url): Promise<any>{
 		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		// body: JSON.stringify(data) // body data type must match "Content-Type" header
 	})
-	return response.json() // parses JSON response into native JavaScript objects
+	return response // parses JSON response into native JavaScript objects
 }
 
 
@@ -197,13 +217,13 @@ async function deleteData(url): Promise<any>{
 		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		// body: JSON.stringify(data) // body data type must match "Content-Type" header
 	})
-	return response.json() // parses JSON response into native JavaScript objects
+	return response// parses JSON response into native JavaScript objects
 
 }
 
 async function postData(url, data): Promise<any> {
 	// Default options are marked with *
-	const response = await fetch( url, {
+	const response = await fetch(url, {
 		method: "POST", // *GET, POST, PUT, DELETE, etc.
 		mode: "cors", // no-cors, *cors, same-origin
 		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -216,5 +236,21 @@ async function postData(url, data): Promise<any> {
 		referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		body: JSON.stringify(data) // body data type must match "Content-Type" header
 	})
-	return response.json() // parses JSON response into native JavaScript objects
+	return response // parses JSON response into native JavaScript objects
+}
+
+function getCookie(cname) {
+	const name = cname + "="
+	const decodedCookie = decodeURIComponent(document.cookie)
+	const ca = decodedCookie.split(";")
+	for(let i = 0; i <ca.length; i++) {
+		let c = ca[i]
+		while (c.charAt(0) == " ") {
+			c = c.substring(1)
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length)
+		}
+	}
+	return null
 }
