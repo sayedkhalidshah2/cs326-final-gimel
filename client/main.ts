@@ -124,6 +124,7 @@ $("#login-button").click( async function (event) {
 	// location.reload()
 
 })
+<<<<<<< HEAD
 
 async function createPage(resturaunt): Promise<any>{
 	// TODO: do this only once per load
@@ -281,6 +282,8 @@ $("#add-resturaunt-button").click( async function (event) {
 
 })
 
+=======
+>>>>>>> cb81dfb... auth mid-done
 
 async function createPage(resturaunt): Promise<any>{
 	// TODO: do this only once per load
@@ -292,22 +295,20 @@ async function createPage(resturaunt): Promise<any>{
 
 	console.log(`creating ${resturaunt}`)
 	const items: Array<any> = await getData("/menus/" + resturaunt)
-
 	let html = ""
 
 	for(const item of items){
 		console.log(item)
 		html += 
-			`<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">${item.name}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">$${item.cost}</h6>
-					<p class="card-text">${item.descr}</p>
-					<button type="button" class="btn btn-danger" onclick="deleteItem('${resturaunt}' , '${item.name}')">Remove item</button>
-				</div>
-			</div>`
+		`<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">${item.name}</h5>
+				<h6 class="card-subtitle mb-2 text-muted">$${item.cost}</h6>
+				<p class="card-text">${item.descr}</p>
+				<button type="button" class="btn btn-danger" onclick="deleteItem('${resturaunt}' , '${item.name}')">Remove item</button>
+			</div>
+		</div>`
 	}
-
 
 	const button =	$("<button>",{
 		class: "btn btn-primary",
@@ -323,13 +324,9 @@ async function createPage(resturaunt): Promise<any>{
 		"data-source": resturaunt,
 		click: deleteRest
 	})
-
-
-
 	$("#pill-" + resturaunt).html(html).append(button, button2)
-	
-
 }
+
 async function addItem(rest = "default ",name="default", cost = 0, des= "default", cat = "default"): Promise<any>{
 	console.log(`adding item ${name}`)
 	const data = {
@@ -374,7 +371,28 @@ async function deleteRest(restaurant): Promise<any>{
 
 }
 
+<<<<<<< HEAD
 >>>>>>> d7ae7df... bulk update
+=======
+async function login(code: string): Promise<any>{
+
+	const data = {"code": code}
+
+	console.log(data)
+
+	const response = (await postData("/login", data)).json
+
+
+	if(response.status === 404){
+		console.log("yikes")
+	}
+	else{
+		console.log(response)
+		// document.cookie = `bergerbar=${response}`
+	}
+}
+
+>>>>>>> cb81dfb... auth mid-done
 async function getData(url): Promise<any>{
 >>>>>>> aae94e7... added dynamic nav bar and adding/editing items
 	const response = await fetch(url, {
@@ -390,6 +408,7 @@ async function getData(url): Promise<any>{
 		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		// body: JSON.stringify(data) // body data type must match "Content-Type" header
 	})
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return response // parses JSON response into native JavaScript objects
 }
@@ -419,6 +438,9 @@ async function postData(url, data): Promise<any> {
 	const response = await fetch(url, {
 =======
 	return response.json() // parses JSON response into native JavaScript objects
+=======
+	return response // parses JSON response into native JavaScript objects
+>>>>>>> cb81dfb... auth mid-done
 }
 
 
@@ -437,18 +459,22 @@ async function deleteData(url): Promise<any>{
 		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		// body: JSON.stringify(data) // body data type must match "Content-Type" header
 	})
-	return response.json() // parses JSON response into native JavaScript objects
+	return response// parses JSON response into native JavaScript objects
 
 }
 
 async function postData(url, data): Promise<any> {
 	// Default options are marked with *
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const response = await fetch(port + url, {
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
 =======
 	const response = await fetch( url, {
 >>>>>>> aae94e7... added dynamic nav bar and adding/editing items
+=======
+	const response = await fetch(url, {
+>>>>>>> cb81dfb... auth mid-done
 		method: "POST", // *GET, POST, PUT, DELETE, etc.
 		mode: "cors", // no-cors, *cors, same-origin
 		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -462,6 +488,9 @@ async function postData(url, data): Promise<any> {
 		body: JSON.stringify(data) // body data type must match "Content-Type" header
 	})
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb81dfb... auth mid-done
 	return response // parses JSON response into native JavaScript objects
 }
 
@@ -479,7 +508,10 @@ function getCookie(cname) {
 		}
 	}
 	return null
+<<<<<<< HEAD
 =======
 	return response.json() // parses JSON response into native JavaScript objects
 >>>>>>> 335da6e... attempting to generate pages dynamicaly
+=======
+>>>>>>> cb81dfb... auth mid-done
 }
