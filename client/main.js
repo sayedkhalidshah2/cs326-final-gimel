@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 //Nav bar controllers
-var ur = "http://gimel-final.herokuapp.com";
+var ur = "https://gimel-final.herokuapp.com";
 $("#sideNav").on("hidden.bs.collapse", function () {
     $("#sideNav").height("93vh");
     $("#sideNav").addClass("d-none d-sm-block collapse");
