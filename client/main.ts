@@ -4,10 +4,12 @@
 
 //Nav bar controllers
 $("#sideNav").on("hidden.bs.collapse", function () {
+	$("#sideNav").height("93vh")
 	$("#sideNav").addClass("d-none d-sm-block collapse" )
 })
 $("#sideNav").on("show.bs.collapse", function () {
-	$("#sideNavBack").height("auto")
+	$("#sideNav").height("auto")
+	$("#sideNav").width("100vw")
 	$("#sideNav").removeClass("d-none d-sm-block")
 })
 $("#icon").click( function() {

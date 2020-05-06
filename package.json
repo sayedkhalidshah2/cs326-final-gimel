@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server-main.js"
+    "start": "tsc  --build ./client/tsconfig.json && ts-node server-main.ts"
   },
   "repository": {
     "type": "git",

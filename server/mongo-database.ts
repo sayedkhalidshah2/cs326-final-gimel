@@ -1,18 +1,16 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-// import { URI } from "./secure.json"
-
-var URI = "";
+let pass = ""
 if (!process.env.MONGO_KEY) {
-	URI = require('secret.json')
+	pass = require("./secrets.json").MONGO_KEY
 }
-
 export class Database {
 		
 	private MongoClient = require("mongodb").MongoClient;
-	private uri = process.env.MONGO_KEY || URI
+
+	private uri = process.env.MONGO_KEY || pass
     private client;
-    private collectionName : string;
-    private dbName : string = "BergerCluster";
+    private collectionName: string;
+    private dbName = "BergerCluster";
 
     constructor() {
     	this.client = new this.MongoClient(this.uri, { useNewUrlParser: true, useUnifiedTopology: true,		}, );
@@ -40,104 +38,111 @@ export class Database {
     	})()
     }
 	
-    public async addResturaunt(name: string, descr: string) : Promise<void> {		
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection("Resturaunts")
-    	let result = await collection.updateOne( {"name": name}, {$set: {"descr": descr}}, { "upsert" : true } )
+    public async addResturaunt(name: string, descr: string): Promise<void> {		
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection("Resturaunts")
+    	const result = await collection.updateOne( {"name": name}, {$set: {"descr": descr}}, { "upsert" : true } )
     	console.log("result = " + result)
     	return result
     }
 
 	
-    public async addItem(rest: string, item:string, cost:number, descr: string, type:string) : Promise<any> {
-    	let db = this.client.db(this.dbName)
-    	let collectionR = db.collection("Resturaunts")
-		let resultR = await collectionR.findOne( {"name": rest} )		
+    public async addItem(rest: string, item: string, cost: number, descr: string, type: string): Promise<any> {
+    	const db = this.client.db(this.dbName)
+    	const collectionR = db.collection("Resturaunts")
+    	const resultR = await collectionR.findOne( {"name": rest} )		
     	// if(resultR === null){
     	// 	return -1
     	// }
-    	let collection = db.collection(rest)
+    	const collection = db.collection(rest)
     	console.log("putting " + item)
-    	let result = await collection.updateOne( {"name": item}, 
+    	const result = await collection.updateOne( {"name": item}, 
     		{$set: {"descr": descr, "cost": cost, "type": type}}, 
     		{ "upsert" : true } )
     	console.log("result = " + result)
     	return result
     }
 	
-    public async getItem(rest: string, item:string) : Promise<void> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection(rest)
+    public async getItem(rest: string, item: string): Promise<void> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection(rest)
     	console.log("getting " + item)
-    	let result = await collection.findOne( {"name": item})
+    	const result = await collection.findOne( {"name": item})
     	console.log("result = " + JSON.stringify(result))
     	return result
     }
 	
 		
-    public async deleteItem(rest: string, item:string) : Promise<void> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection(rest)
+    public async deleteItem(rest: string, item: string): Promise<void> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection(rest)
     	console.log("deleting " + item)
-    	let result = await collection.deleteOne( {"name": item})
+    	const result = await collection.deleteOne( {"name": item})
     	console.log("result = " + result)
     	return result
     }
 	
-    public async getResturaunts() : Promise<string> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection("Resturaunts")
+    public async getResturaunts(): Promise<string> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection("Resturaunts")
     	console.log("getting resturaunts")
-    	let result = await collection.find().toArray()
+    	const result = await collection.find().toArray()
     	console.log("result = " + JSON.stringify(result))
     	return result
     }
 	
-    public async deleteResturaunt(rest: string) : Promise<string> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection(rest)
+    public async deleteResturaunt(rest: string): Promise<string> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection(rest)
     	let result
     	console.log("deleting "+ rest)
     	try {result = await collection.drop()}
-    	catch(e) {   }
+    	catch(e) { console.log(e)   }
     	console.log("result = " + result)
 
-    	let collection2 = db.collection("Resturaunts")
-    	let result2 = await collection2.deleteOne( {"name": rest})
+    	const collection2 = db.collection("Resturaunts")
+    	const result2 = await collection2.deleteOne( {"name": rest})
     	console.log("result2 = " + result2)
 
     	return result2
     }
 	
-    public async getResturauntItems(rest :string) : Promise<string> {
-    	let db = this.client.db(this.dbName)
-    	let collection = db.collection(rest)
+    public async getResturauntItems(rest: string): Promise<string> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection(rest)
     	console.log("getting "+ rest)
-    	let result = await collection.find().toArray()
+    	const result = await collection.find().toArray()
+    	console.log("result = " + JSON.stringify(result))
+    	return result 
+    }
+	
+    public async login(code: string): Promise<string> {
+    	const db = this.client.db(this.dbName)
+    	const collection = db.collection("Codes")
+    	console.log("getting codes")
+    	const result = await collection.findOne( {"code": code})
     	console.log("result = " + JSON.stringify(result))
     	return result 
     }
 
-
-	// public async isFound(rest: string,name:string) : Promise<boolean>  {
-	// 	console.log("isFound: rest = " + rest)
-	// 	let v = await this.get(rest,name)
-	// 	console.log("is found result = " + v)
-	// 	if (v === null) {
-	//     	return false
-	// 	} else {
-	//     	return true
-	// 	}
-	// }
-	public async isFound(rest: string) : Promise<boolean>  {
-		console.log("isFound: key = " + rest);
-			// 	let v = await this.get(rest,name)
-		let v = await this.getResturauntItems(rest);
-		console.log("is found result = " + v);
-		if (v === null) {
-			return false;
-		} else {
-			return true;
-		}
-		}
+    // public async isFound(rest: string,name:string) : Promise<boolean>  {
+    // 	console.log("isFound: rest = " + rest)
+    // 	let v = await this.get(rest,name)
+    // 	console.log("is found result = " + v)
+    // 	if (v === null) {
+    //     	return false
+    // 	} else {
+    //     	return true
+    // 	}
+    // }
+    public async isFound(rest: string): Promise<boolean>  {
+    	console.log("isFound: key = " + rest)
+    	const v = await this.getResturauntItems(rest)
+    	console.log("is found result = " + v)
+    	if (v === null) {
+    		return false
+    	} else {
+    		return true
+    	}
+    }
 }
