@@ -1,143 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="=en"> 
+    <head>
+         <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Berger Bar</title>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #77c6ff; height:7vh;">
-      <a id="icon" data-toggle="pill" role="tab" class="navbar-brand" href="#v-pills-home" aria-controls="v-pills-home" >
-        <img src="./assets/images/logo.png" width="60" height="40"> BergerBar
-      </a>
-      <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target=".mobileNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </nav>
-
-      <div class="container-fluid">
-        <div class="row" >
-          <div id="sideNav" class="col-1 d-none d-sm-block mobileNav " style="background-color:#77c6ff; min-width: fit-content; height: 93vh;" >
-            <div id="sideNavBack" class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
-              <button class="btn btn-outline-primary d-none admin" type="button" data-toggle="modal" data-target="#resturauntModal"  >Add Resturaunt</button>
-              <button class="btn btn-outline-primary admin" type="button" data-toggle="modal" data-target="#loginModal">Login</button>
-            </div>
-
-          </div>
-          <div class="col">
-            <div class="tab-content" id="v-pills-tabContent" >
-              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel">Home</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Add or edit an item</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="add-item-form" method="post">
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Name:</label>
-                  <input type="text" class="form-control" id="add-item-name">
-                </div>
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label">Cost:</label>
-                  <input type="text" class="form-control" id="add-item-cost">
-                </div>
-                <div class="form-group">
-                <label for="message-text" class="col-form-label">Description:</label>
-                <input type="text" class="form-control" id="add-item-des">
-                </div>
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label">Category:</label>
-                  <input type="text" class="form-control" id="add-item-cat">
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="add-item-button">Submit</button>
-                </div>
-              </form>
-            </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="resturauntModal" tabindex="-1" role="dialog" >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Add a resturaunt</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="add-rest-form">
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Name:</label>
-                  <input type="text" class="form-control" id="add-rest-name">
-                </div>
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label">Description:</label>
-                  <input type="text" class="form-control" id="add-rest-des">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary"  id="add-resturaunt-button">Submit</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Login</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="add-rest-form">
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Code:</label>
-                  <input type="text" class="form-control" id="login-code">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary"  id="login-button">Submit</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel = "stylesheet" type = "text/css" href = "assets/css/home.css" />
+      <title>Home</title>
+    </head>
       
+    <body> 
+        <section>
+          <nav class="navbar fixed-top navbar-expand-sm navbar-light" style="background-color: #010d16;">
+            <a class="navbar-brand" href="#" style="color:rgba(248, 245, 245, 0.838);">Icon here</a>
+            <a class=" my-2 my-sm-0" href="auth.html" style="color: floralwhite; margin-left: 85%;">log In</a>
+            <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target=".mobileNav"  >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- <div class="collapse navbar-collapse mobileNav">
+              <div class="navbar-nav mr-auto">
+                  <a class="navitem nav-link" href="#">Link</a>
+              </div>
+            </div> -->
+          </nav>
+          <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="ssb.html">Sylvan Snack Bar</a></li>
+            <li><a href="gss.html">Greeno's Sub Shop</a></li>
+            <li><a href="sam.html">Sweets and More</a></li>
+          </ul>
+              
+          <div id = "about">
+            <img src="assets/images/back_to_school.jpeg" class="card-img-top" alt="umass" width="100%" height="150px">
+            <h1 class="display-5 text-white" style="background-color: #971B2F; text-align: center ;">Welcome to Berger bar</h1>
+          </div>
 
-    <!-- Optional JavaScript -->
+            
+            <div class="card" style="width: 18rem;" id="first" >
+              <img src="assets/images/Sylvan.jpg" class="card-img-top" alt="Sylvan">
+              <div class="card-body">
+                <h5 class="card-title">Sylvan Snak Bar</h5>
+                <p class="card-text">Hit navigate to learn more about Sylvan Snak Bar</p>
+                <a href="ssb.html" class="btn btn-primary">Navigate</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 18rem;" id="second">
+              <img src="assets/images/Honors.jpg" class="card-img-top" alt="Sweets and Mores">
+              <div class="card-body">
+                <h5 class="card-title">Sweets and Mores</h5>
+                <p class="card-text">Hit navigate to learn more about Sweets and Mores</p>
+                <a href="sam.html" class="btn btn-primary">Navigate</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 18rem;" id = third>
+              <img src="assets/images/Worcester.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Greeno's Sub Shop</h5>
+                <p class="card-text">Hit navigate to learn more about Greeno's Sub shop</p>
+                <a href="gss.html" class="btn btn-primary">Navigate</a>
+              </div>
+            </div>
+
+
+
+            
+            <div id="aboutus">
+              <h4 class="display-6"style="text-align: center ;">About Us</h4>
+              <p class="p-3 mb-2 bg-secondary text-white" style="text-align: center ;">He we will will know more</p>
+              <h4 class="display-6" style="text-align: center ;">Mission Statement</h4>
+              <p class="p-3 mb-2 bg-secondary text-white"style="text-align: center ;">This is our mission Statement</p>
+            </div>    
+        </section>
+        <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-
-  </body>
+    </body>
 </html>
