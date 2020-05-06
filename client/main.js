@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 //Nav bar controllers
-var ur = "http://localhost:8080";
+var ur = "http://gimel-final.herokuapp.com";
 $("#sideNav").on("hidden.bs.collapse", function () {
     $("#sideNav").height("93vh");
     $("#sideNav").addClass("d-none d-sm-block collapse");
@@ -69,19 +69,19 @@ $(document).ready(function () {
                         $("<a>", {
                             text: resturaunt.name,
                             title: resturaunt.name,
-                            class: "nav-link",
+                            "class": "nav-link",
                             id: "nav-" + resturaunt.name,
                             "data-toggle": "pill",
                             "role": "tab",
                             "aria-controls": "pill-" + resturaunt.name,
                             href: "#pill-" + resturaunt.name,
                             "data-source": resturaunt.name,
-                            click: createPage,
+                            click: createPage
                         }).prependTo("#sideNavBack");
                         $("<div>", {
-                            class: "tab-pane fade",
+                            "class": "tab-pane fade",
                             id: "pill-" + resturaunt.name,
-                            "role": "tabpanel",
+                            "role": "tabpanel"
                         }).appendTo("#v-pills-tabContent");
                     }
                     return [2 /*return*/];
@@ -186,14 +186,14 @@ function createPage(resturaunt) {
                             "<div class=\"card\">\n\t\t\t<div class=\"card-body\">\n\t\t\t\t<h5 class=\"card-title\">" + item.name + "</h5>\n\t\t\t\t<h6 class=\"card-subtitle mb-2 text-muted\">$" + item.cost + "</h6>\n\t\t\t\t<p class=\"card-text\">" + item.descr + "</p>\n\t\t\t\t<button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteItem('" + resturaunt + "' , '" + item.name + "')\">Remove item</button>\n\t\t\t</div>\n\t\t</div>";
                     }
                     button = $("<button>", {
-                        class: "btn btn-primary",
+                        "class": "btn btn-primary",
                         text: "Add or edit item",
                         "data-source": resturaunt,
                         "data-toggle": "modal",
                         "data-target": "#exampleModal"
                     });
                     button2 = $("<button>", {
-                        class: "btn btn-danger",
+                        "class": "btn btn-danger",
                         text: "Delete this resturaunt",
                         "data-source": resturaunt,
                         click: deleteRest
@@ -220,7 +220,7 @@ function addItem(rest, name, cost, des, cat) {
                         "name": name,
                         "cost": cost,
                         "descr": des,
-                        "type": cat,
+                        "type": cat
                     };
                     return [4 /*yield*/, postData("/menus/" + rest, data)];
                 case 1:
@@ -241,7 +241,7 @@ function addRest(rest, des) {
                     console.log("adding rest " + rest);
                     data = {
                         "name": rest,
-                        "descr": des,
+                        "descr": des
                     };
                     return [4 /*yield*/, postData("/menus/", data)];
                 case 1:
@@ -328,7 +328,7 @@ function getData(url) {
                         headers: {
                             "Content-Type": "application/json"
                             // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
+                        }
                     })];
                 case 1:
                     response = _a.sent();
@@ -350,7 +350,7 @@ function deleteData(url) {
                         headers: {
                             "Content-Type": "application/json"
                             // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
+                        }
                     })];
                 case 1:
                     response = _a.sent();
