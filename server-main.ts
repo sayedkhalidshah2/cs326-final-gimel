@@ -4,5 +4,5 @@ import { MyServer } from "./server/myserver-routing"
 const theDatabase = new Database() 
 const theServer = new MyServer(theDatabase)
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT 
 theServer.listen(port)
