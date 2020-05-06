@@ -1,4 +1,11 @@
 node_modules/*
+<<<<<<< HEAD
 server/secrets.json
 ts/secure.ts
 *.js
+=======
+/server/secret.json
+/server/secure.json
+/server/secure
+ts/secure.ts
+>>>>>>> cbe82bbd3e07af40e2c8242f0b233297f0f3e9bd
