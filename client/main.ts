@@ -3,7 +3,7 @@
 //TODO: disable tab when active
 
 //Nav bar controllers
-const ur = "https://gimel-final.herokuapp.com"
+const ur = "http://gimel-final.herokuapp.com"
 
 $("#sideNav").on("hidden.bs.collapse", function () {
 	$("#sideNav").height("93vh")
