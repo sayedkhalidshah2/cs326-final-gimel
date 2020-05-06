@@ -3,6 +3,8 @@
 //TODO: disable tab when active
 
 //Nav bar controllers
+const ur = "http://localhost:8080"
+
 $("#sideNav").on("hidden.bs.collapse", function () {
 	$("#sideNav").height("93vh")
 	$("#sideNav").addClass("d-none d-sm-block collapse" )
@@ -187,7 +189,7 @@ async function login(code: string): Promise<any>{
 }
 
 async function getData(url): Promise<any>{
-	const response = await fetch(url, {
+	const response = await fetch(ur+url, {
 		method: "GET", // *GET, POST, PUT, DELETE, etc.
 		mode: "cors", // no-cors, *cors, same-origin
 		// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -206,7 +208,7 @@ async function getData(url): Promise<any>{
 
 
 async function deleteData(url): Promise<any>{
-	const response = await fetch(url, {
+	const response = await fetch(ur+url, {
 		method: "DELETE", // *GET, POST, PUT, DELETE, etc.
 		mode: "cors", // no-cors, *cors, same-origin
 		// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -225,7 +227,7 @@ async function deleteData(url): Promise<any>{
 
 async function postData(url, data): Promise<any> {
 	// Default options are marked with *
-	const response = await fetch(url, {
+	const response = await fetch(ur+url, {
 		method: "POST", // *GET, POST, PUT, DELETE, etc.
 		mode: "cors", // no-cors, *cors, same-origin
 		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
