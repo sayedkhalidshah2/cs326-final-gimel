@@ -513,8 +513,17 @@ All response data is returned as a JSON object
   </tr>
 </table>
 
-CRUD Operation:
+Seperation of work:
 
+Sayed: Worked on frontend, contributions also in routing and database edits
+Veronica: Worked on database, contributions also in routing
+Josh: Worked on routing, contributions also in database edits
+
+The team will be more focused on front-end next milestone so we focused more on backend this time
+
+
+
+CRUD Operation:
 
 The Create button adds a new item to the restaurent.
 
