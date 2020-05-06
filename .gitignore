@@ -1,4 +1,3 @@
 node_modules/*
 server/secrets.json
 ts/secure.ts
-*.js
