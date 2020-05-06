@@ -1,11 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-<<<<<<< HEAD
 let pass = ""
-=======
-// import { URI } from "./secure.json"
-
-var URI = "";
->>>>>>> cbe82bbd3e07af40e2c8242f0b233297f0f3e9bd
 if (!process.env.MONGO_KEY) {
 	pass = require("./secrets.json").MONGO_KEY
 }
@@ -13,12 +7,8 @@ if (!process.env.MONGO_KEY) {
 export class Database {
 		
 	private MongoClient = require("mongodb").MongoClient;
-<<<<<<< HEAD
 
 	private uri = process.env.MONGO_KEY || pass
-=======
-	private uri = process.env.MONGO_KEY || URI
->>>>>>> cbe82bbd3e07af40e2c8242f0b233297f0f3e9bd
     private client;
     private collectionName: string;
     private dbName = "BergerCluster";
@@ -136,7 +126,6 @@ export class Database {
     	return result 
     }
 
-<<<<<<< HEAD
     // public async isFound(rest: string,name:string) : Promise<boolean>  {
     // 	console.log("isFound: rest = " + rest)
     // 	let v = await this.get(rest,name)
@@ -157,28 +146,4 @@ export class Database {
     		return true
     	}
     }
-=======
-
-	// public async isFound(rest: string,name:string) : Promise<boolean>  {
-	// 	console.log("isFound: rest = " + rest)
-	// 	let v = await this.get(rest,name)
-	// 	console.log("is found result = " + v)
-	// 	if (v === null) {
-	//     	return false
-	// 	} else {
-	//     	return true
-	// 	}
-	// }
-	public async isFound(rest: string) : Promise<boolean>  {
-		console.log("isFound: key = " + rest);
-			// 	let v = await this.get(rest,name)
-		let v = await this.getResturauntItems(rest);
-		console.log("is found result = " + v);
-		if (v === null) {
-			return false;
-		} else {
-			return true;
-		}
-		}
->>>>>>> cbe82bbd3e07af40e2c8242f0b233297f0f3e9bd
 }
