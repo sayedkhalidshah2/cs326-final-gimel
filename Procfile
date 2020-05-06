@@ -1,1 +1,1 @@
-web: node server/server-main.js
+web: node server-main.js
