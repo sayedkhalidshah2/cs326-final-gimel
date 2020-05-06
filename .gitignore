@@ -4,3 +4,4 @@ node_modules/*
 /server/secure.json
 /server/secure
 ts/secure.ts
+server/secrets.json
