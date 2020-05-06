@@ -51,7 +51,7 @@ export class MyServer {
     	// this.router.get("/*", this.errorHandler.bind(this))
 
     	// Start up the counter endpoint at '/'.
-    	this.server.use("/api", this.router)
+    	this.server.use("/", this.router)
     }
     private async errorHandler(request, response, next): Promise<void> {
     	const value: boolean = await this.theDatabase.isFound(request.params["item"]+"-"+request.body.name)
