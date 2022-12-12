@@ -22,7 +22,7 @@
   "homepage": "https://github.com/sayedkhalidshah2/cs326-final-gimel#readme",
   "dependencies": {
     "@types/jquery": "^3.3.35",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongodb": "^3.5.7"
   },
   "devDependencies": {
